@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play services IDs.
+-->
+<resources>
+	<string name="app_id">ChangeThisToken</string>
+	<string name="package_name">com.rartworks.ChangeMe.android</string>
+	<string name="leaderboard_high_scores">ChangeThisToken</string>
+	<item type="id" name="layout" />
+</resources>
