@@ -48,18 +48,6 @@ class GameScreen(private val game: GameCore) : ComplexDrawable(), Screen {
 		this.renderer.render(this.renderMethod)
 	}
 
-	override fun show() {
-		this.gameController.register()
-
-		this.alpha = 0f
-		this.alphaTween.clear()
-		this.alphaTween.start(1f, 1f)
-	}
-
-	override fun hide() {
-		this.gameController.unregister()
-	}
-
 	override fun dispose() {
 		this.renderer.dispose()
 	}
