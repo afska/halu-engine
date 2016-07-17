@@ -27,7 +27,7 @@ object AssetsLoader {
 	fun load() {
 		AssetsFactory.init()
 
-		//(load the splash screen assets synchronously)
+		// (load the splash screen assets synchronously)
 		//AssetsFactory.loadTexture("world/night.png")
 		//this.manager.finishLoading()
 
