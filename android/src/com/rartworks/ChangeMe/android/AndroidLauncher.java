@@ -1,7 +1,6 @@
 package com.rartworks.ChangeMe.android;
 
-import com.rartworks.engine.android.GdxAndroidApp;
-import com.rartworks.engine.android.GdxAppTokens;
+import com.rartworks.engine.android.*;
 
 import java.util.HashMap;
 import java.util.Map;

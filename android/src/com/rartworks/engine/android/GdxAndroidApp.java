@@ -21,11 +21,9 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.rartworks.engine.android.services.GooglePlay;
 import com.rartworks.engine.android.services.InAppBilling;
-import com.rartworks.ChangeMe.GamePreferences;
-import com.rartworks.ChangeMe.GameCore;
+import com.rartworks.ChangeMe.*;
 import com.rartworks.ChangeMe.android.R;
-import com.rartworks.engine.apis.MobilePreferences;
-import com.rartworks.engine.apis.MobileServices;
+import com.rartworks.engine.apis.*;
 
 /**
  * An Android LibGDX app.
