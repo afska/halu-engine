@@ -33,7 +33,7 @@ class SplashScreen(private val game: GameCore) : ComplexDrawable(), Screen {
 		}
 
 		this.progressLabel.text = "${(AssetsLoader.progress * 100).toInt()}%"
-		this.renderer.render(this.renderMethod)
+		this.renderer.render(this.renderMethod, {})
 	}
 
 	override fun dispose() {

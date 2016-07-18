@@ -23,9 +23,10 @@ class Renderer(private val dimensions: Dimensions) : Disposable {
 		this.spriteBatch.projectionMatrix = this.camera.combined
 	}
 
-	fun render(draw: (SpriteBatch) -> (Unit)/*, drawShapes: (ShapeRenderer) -> (Unit) = {} // PERFORMANCE */) {
+	fun render(draw: (SpriteBatch) -> (Unit), preDraw: () -> (Unit)/*, drawShapes: (ShapeRenderer) -> (Unit) = {} // PERFORMANCE */) {
 		this.cleanScreen()
 
+		preDraw()
 		this.spriteBatch.begin()
 		this.spriteBatch.transformMatrix.setToTranslation(0f, 0f, 0f)
 		draw(this.spriteBatch)
@@ -38,7 +39,7 @@ class Renderer(private val dimensions: Dimensions) : Disposable {
 		this.shapeRenderer.end()
 		*/
 
-		this.box2dDebugRenderer.render(AssetsFactory.box2dWorld, this.camera.combined) // DEBUG
+		//this.box2dDebugRenderer.render(AssetsFactory.box2dWorld, this.camera.combined) // DEBUG
 	}
 
 	override fun dispose() {
