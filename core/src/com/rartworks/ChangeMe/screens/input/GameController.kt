@@ -13,7 +13,6 @@ class GameController(private val screen: GameScreen) : InputHandler(screen.dimen
 	override fun register(): InputHandler {
 		return super.register()
 			.onTouchDown { x, y, pointer ->
-				this.screen.renderer.camera.translate(30f, 0f)
 				this.screen.hello.position.y -= 10f
 				true
 			}.onTouchUp { x, y, pointer ->
