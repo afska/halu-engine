@@ -16,27 +16,27 @@ class GdxAppTokens {
 	// Setters:
 	// --------
 
-	fun setAdsId(value: String): GdxAppTokens {
+	fun withAdsId(value: String): GdxAppTokens {
 		this.adsId = value
 		return this
 	}
 
-	fun setPlayStoreLink(value: String): GdxAppTokens {
+	fun withPlayStoreLink(value: String): GdxAppTokens {
 		this.playStoreLink = value
 		return this
 	}
 
-	fun setAchievementsByScore(value: Map<Int, String>): GdxAppTokens {
+	fun withAchievementsByScore(value: Map<Int, String>): GdxAppTokens {
 		this.achievementsByScore = value
 		return this
 	}
 
-	fun setBillingKey(value: String): GdxAppTokens {
+	fun withBillingKey(value: String): GdxAppTokens {
 		this.billingKey = value
 		return this
 	}
 
-	fun setRemoveAdsSku(value: String): GdxAppTokens {
+	fun withRemoveAdsSku(value: String): GdxAppTokens {
 		this.removeAdsSku = value
 		return this
 	}

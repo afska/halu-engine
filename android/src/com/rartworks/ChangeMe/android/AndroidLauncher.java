@@ -18,11 +18,11 @@ public class AndroidLauncher extends GdxAndroidApp {
 	public AndroidLauncher() {
 		super(
 			new GdxAppTokens()
-				.setAdsId("ChangeThisToken")
-				.setPlayStoreLink("ChangeThisToken")
-				.setAchievementsByScore(achievements)
-				.setBillingKey("ChangeThisToken")
-				.setRemoveAdsSku("remove_ads")
+				.withAdsId("ChangeThisToken")
+				.withPlayStoreLink("ChangeThisToken")
+				.withAchievementsByScore(achievements)
+				.withBillingKey("ChangeThisToken")
+				.withRemoveAdsSku("remove_ads")
 		);
 	}
 }
