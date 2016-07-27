@@ -1,6 +1,6 @@
 # game-seed
 
-The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks.halu.android), now open source!
+The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks.halu.android), and the seed for new games.
 ![screenshot](https://cloud.githubusercontent.com/assets/1631752/16611273/73f1ece0-4360-11e6-9227-6f9cf6392984.png)
 
 # features
@@ -21,7 +21,8 @@ The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks
 
 # instructions
 
-- Replace `ChangeMe` with the name of the game.
+- Replace `ChangeMe` with the `NameOfTheGame`.
+- Replace `com.rartworks.ChangeMe` with `com.rartworks.nameofthegame`.
 - Replace `ChangeThisToken` with a secret token.
 
 # recommended tools
