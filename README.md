@@ -5,14 +5,14 @@ The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks
 
 # features
 
-- Language: Kotlin
-- Engine: LibGDX
-- Entities: position, color, scale, rotation, origin, alpha.
+- Language: **Kotlin**
+- Engine: **LibGDX**
+- Entities: `position`, `color`, `scale`, `rotation`, `origin`, `alpha`.
 - Complex entities can have child entities.
 - Animated movie clips with loops.
-- Perfect collisions with Box2d.
-- Lights with Box2dLights.
-- Tween support with TweenEngine.
+- Perfect collisions with **Box2d**.
+- Lights with **Box2dLights**.
+- Tween support with **TweenEngine**.
 - Tap detection, onDrag support.
 - Buttons and auto-hiding widgets.
 - Labels with TrueType font loading.
@@ -22,10 +22,10 @@ The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks
 # instructions
 
 - Replace `ChangeMe` with the `NameOfTheGame`.
-- Replace `com.rartworks.ChangeMe` with `com.rartworks.nameofthegame`.
+- Replace `com.rartworks.NameOfTheGame` with `com.rartworks.nameofthegame`.
 - Replace `ChangeThisToken` with a secret token.
 
 # recommended tools
-- GDX Texture Packer
-- Box2D Physics Editor
+- [GDX Texture Packer](https://github.com/libgdx/libgdx/wiki/Texture-packer)
+- [Box2D Physics Editor](https://www.codeandweb.com/physicseditor)
 
