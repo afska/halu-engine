@@ -1,7 +1,8 @@
-apply plugin: "java"
+apply plugin: "kotlin"
 
 sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.kotlin.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "com.rartworks.ChangeMe.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../android/assets");
@@ -19,7 +20,7 @@ task dist(type: Jar) {
 	from files(sourceSets.main.output.resourcesDir)
 	from {configurations.compile.collect {zipTree(it)}}
 	from files(project.assetsDir);
- 
+
 	manifest {
 		attributes 'Main-Class': project.mainClassName
 	}
