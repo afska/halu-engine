@@ -2,12 +2,12 @@ package com.rartworks.ChangeMe
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Preferences
-import com.rartworks.engine.apis.MobilePreferences
+import com.rartworks.engine.apis.GooglePlayPreferences
 
 /**
  * The stored preferences of the game.
  */
-object GamePreferences : MobilePreferences {
+object GamePreferences : GooglePlayPreferences {
 	private val ALREADY_PLAYED = "alreadyPlayed"
 	private val SIGNED_IN = "signedIn"
 	private val FULL_VERSION = "fullVersion"

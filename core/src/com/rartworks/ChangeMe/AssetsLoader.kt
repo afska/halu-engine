@@ -29,7 +29,6 @@ object AssetsLoader {
 		//AssetsFactory.loadTexture("world/night.png")
 		//this.manager.finishLoading()
 
-
 		// (load the rest asynchronously)
 		AssetsFactory
 			.load("demo.atlas", "polygons.json")

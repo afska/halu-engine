@@ -1,8 +1,8 @@
 package com.rartworks.engine.android.services
 
+import android.app.Activity
 import android.content.Intent
 import com.badlogic.gdx.Gdx
-import com.rartworks.engine.android.GdxAndroidApp
 import com.rartworks.engine.android.services.integrations.Integration
 import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
 import com.rartworks.engine.android.services.util.IabHelper
@@ -14,7 +14,7 @@ import java.util.*
 /**
  * Manages the integration with In App Billing.
  */
-class InAppBillingIntegration(app: GdxAndroidApp, private val billingKey: String, private val availablePurchases: List<Purchase>) : Integration(app), InAppBillingServices {
+class InAppBillingIntegration(app: Activity, private val billingKey: String, private val availablePurchases: List<Purchase>) : Integration(app), InAppBillingServices {
 	var iabHelper: IabHelper? = null
 
 	companion object {

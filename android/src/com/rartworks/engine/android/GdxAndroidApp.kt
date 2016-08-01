@@ -7,27 +7,27 @@ import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
+import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
-import com.rartworks.ChangeMe.GameCore
-import com.rartworks.engine.android.services.InAppBillingIntegration
 import com.rartworks.engine.android.services.integrations.Integration
 import com.rartworks.engine.android.utils.createLinearLayoutParams
 import com.rartworks.engine.android.utils.forceLandscape
-import com.rartworks.engine.apis.MobileServices
 
 /**
  * An Android LibGDX app.
  */
 abstract class GdxAndroidApp() : AndroidApplication() {
-	private var layoutId: Int = 0
+	private var layoutId = 0
+	private lateinit var game: ApplicationListener
 	private lateinit var integrations: List<Integration>
 
 	/**
 	 * Stores the needed data of layout and [integrations].
 	 */
-	fun initialize(layoutId: Int, integrations: List<Integration>) {
+	fun initialize(layoutId: Int, game: ApplicationListener, integrations: List<Integration>) {
 		this.layoutId = layoutId
+		this.game = game
 		this.integrations = integrations
 	}
 
@@ -45,15 +45,9 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 		layout.orientation = LinearLayout.VERTICAL
 		layout.id = this.layoutId
 
-		// Create services
-		// TODO: QUIÉN LE PASA AL JUEGO LAS COSAS?
-		this.googlePlay = GooglePlay(this)
-		this.inAppBilling = InAppBillingIntegration(this)
-		val services = MobileServices(this.googlePlay!!, this.inAppBilling!!)
-
 		// Create and setup the libgdx game and view
 		val config = AndroidApplicationConfiguration()
-		val gameView = initializeForView(GameCore(services), config)
+		val gameView = initializeForView(this.game, config)
 
 		// Add the libgdx view
 		val gameParams = this.createLinearLayoutParams()

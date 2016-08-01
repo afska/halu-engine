@@ -1,14 +1,10 @@
 package com.rartworks.ChangeMe.android
 
 import android.os.Bundle
-import com.rartworks.ChangeMe.GamePreferences
+import com.rartworks.ChangeMe.GameCore
+import com.rartworks.ChangeMe.android.services.AndroidMobileServices
+import com.rartworks.ChangeMe.apis.MobileServices
 import com.rartworks.engine.android.GdxAndroidApp
-import com.rartworks.engine.android.services.InAppBillingIntegration
-import com.rartworks.engine.android.services.integrations.Integration
-import com.rartworks.engine.android.services.integrations.adMob.AdMobIds
-import com.rartworks.engine.android.services.integrations.adMob.AdMobIntegration
-import com.rartworks.engine.android.services.integrations.adMob.AdMobSettings
-import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
 import java.util.*
 
 /**
@@ -21,24 +17,12 @@ class AndroidLauncher : GdxAndroidApp() {
 	) {*/
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		val adMobIntegration = AdMobIntegration(this,
-			AdMobIds(layoutId = R.id.layout, adsId = this.getString(R.string.ads_id)),
-			AdMobSettings(adsEnabled = { !GamePreferences.withoutAds }, disableAds = { GamePreferences.withoutAds = true })
-		)
-
-		val inAppBillingIntegration = InAppBillingIntegration(this,
-			this.getString(R.string.billing_key),
-			listOf(
-				Purchase(
-					sku = this.getString(R.string.sku_remove_ads),
-					accept = { adMobIntegration.removeAds() }
-				)
-			)
-		)
+		val mobileServices = AndroidMobileServices(this)
 
 		this.initialize(
 			R.id.layout,
-			listOf<Integration>(adMobIntegration, inAppBillingIntegration)
+			GameCore(mobileServices as MobileServices),
+			mobileServices.toIntegrations()
 		)
 
 		super.onCreate(savedInstanceState)

@@ -1,6 +1,6 @@
 package com.rartworks.engine.apis
 
-interface MobilePreferences {
+interface GooglePlayPreferences {
 	fun hasAlreadyPlayed(): Boolean
 	fun isSignedIn(): Boolean
 }
