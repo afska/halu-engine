@@ -19,6 +19,16 @@ import java.util.List
  * Wraps the services as an interface between the core and the Android project.
  */
 class AndroidMobileServices(app: Activity) : MobileServices {
+	/**
+	 * Converts all the integrations to a [List].
+	 */
+	fun toIntegrations() = listOf<Integration>(
+		/*this.adMob,
+		this.inAppBilling,
+		this.googlePlay,
+		this.leaderboard*/
+	)
+
 	companion object {
 		private val achievements: MutableMap<Int, String>
 
@@ -61,16 +71,8 @@ class AndroidMobileServices(app: Activity) : MobileServices {
 
 	override val leaderboard = LeaderboardIntegration(app,
 		this.googlePlay,
-		listOf(app.getString(R.string.leaderboard_high_scores))
-	)
-
-	/**
-	 * Converts all the integrations to a [List].
-	 */
-	fun toIntegrations() = listOf<Integration>(
-		/*this.adMob,
-		this.inAppBilling,
-		this.googlePlay,
-		this.leaderboard*/
+		listOf(
+			app.getString(R.string.leaderboard_high_scores)
+		)
 	)
 }
