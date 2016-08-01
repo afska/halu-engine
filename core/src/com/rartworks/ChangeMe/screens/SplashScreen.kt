@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.rartworks.ChangeMe.AssetsLoader
 import com.rartworks.ChangeMe.GameContext
-import com.rartworks.ChangeMe.GameCore
 import com.rartworks.engine.drawables.ComplexDrawable
 import com.rartworks.engine.drawables.Label
 import com.rartworks.engine.rendering.Dimensions

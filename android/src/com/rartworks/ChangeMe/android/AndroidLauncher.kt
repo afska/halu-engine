@@ -3,9 +3,7 @@ package com.rartworks.ChangeMe.android
 import android.os.Bundle
 import com.rartworks.ChangeMe.GameCore
 import com.rartworks.ChangeMe.android.services.AndroidMobileServices
-import com.rartworks.ChangeMe.apis.MobileServices
 import com.rartworks.engine.android.GdxAndroidApp
-import java.util.*
 
 /**
  * Launcher for Android.

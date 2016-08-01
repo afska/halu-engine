@@ -13,6 +13,7 @@ import com.rartworks.engine.android.services.integrations.googlePlay.GooglePlayS
 import com.rartworks.engine.android.services.integrations.googlePlay.LeaderboardIntegration
 import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
 import java.util.*
+import java.util.List
 
 /**
  * Wraps the services as an interface between the core and the Android project.

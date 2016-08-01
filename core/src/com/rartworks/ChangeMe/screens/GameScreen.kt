@@ -3,7 +3,6 @@ package com.rartworks.ChangeMe.screens
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.rartworks.ChangeMe.AssetsLoader
 import com.rartworks.ChangeMe.GameContext
-import com.rartworks.ChangeMe.GameCore
 import com.rartworks.ChangeMe.screens.input.GameController
 import com.rartworks.engine.AssetsFactory
 import com.rartworks.engine.collisions.CollisionInfo
