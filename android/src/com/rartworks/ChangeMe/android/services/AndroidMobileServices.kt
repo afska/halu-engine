@@ -6,7 +6,6 @@ import com.rartworks.ChangeMe.android.R
 import com.rartworks.ChangeMe.apis.MobileServices
 import com.rartworks.engine.android.services.InAppBillingIntegration
 import com.rartworks.engine.android.services.integrations.Integration
-import com.rartworks.engine.android.services.integrations.adMob.AdMobIds
 import com.rartworks.engine.android.services.integrations.adMob.AdMobIntegration
 import com.rartworks.engine.android.services.integrations.adMob.AdMobSettings
 import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
@@ -16,8 +15,12 @@ import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
  */
 class AndroidMobileServices(app: Activity) : MobileServices {
 	val adMob = AdMobIntegration(app,
-		AdMobIds(layoutId = R.id.layout, adsId = app.getString(R.string.ads_id)),
-		AdMobSettings(adsEnabled = { !GamePreferences.withoutAds }, disableAds = { GamePreferences.withoutAds = true })
+		AdMobSettings(
+			layoutId = R.id.layout,
+			adsId = app.getString(R.string.ads_id),
+			adsEnabled = { !GamePreferences.withoutAds },
+			disableAds = { GamePreferences.withoutAds = true }
+		)
 	)
 
 	override val inAppBilling = InAppBillingIntegration(app,

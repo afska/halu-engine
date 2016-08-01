@@ -27,6 +27,7 @@ class AndroidLauncher : GdxAndroidApp() {
 
 		super.onCreate(savedInstanceState)
 	}
+
     companion object {
         private val achievements: MutableMap<Int, String>
 

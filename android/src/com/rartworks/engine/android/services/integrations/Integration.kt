@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.ViewGroup
 
 abstract class Integration(protected val app : Activity) {
-	open fun onCreate(layout: ViewGroup) { }
+	open fun onCreating(layout: ViewGroup) { }
 	open fun onCreated() { }
 	open fun onStart() { }
 	open fun onStop() { }

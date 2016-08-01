@@ -54,7 +54,8 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 		gameParams.weight = 1f
 		layout.addView(gameView, gameParams)
 
-		this.integrations.forEach { it.onCreate(layout) }
+		// Share the layout with the integrations
+		this.integrations.forEach { it.onCreating(layout) }
 
 		// Hook it all up
 		setContentView(layout)
