@@ -32,11 +32,11 @@ class InAppBillingIntegration(app: Activity, private val billingKey: String, pri
 		}
 
 		val purchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
-			if (purchase == null || iabHelper == null) return@OnIabPurchaseFinishedListener
+			if (purchase == null || this.iabHelper == null) return@OnIabPurchaseFinishedListener
 
 			if (result.isFailure) {
 				Gdx.app.log("[!] InAppBilling", "Error purchasing: " + result.message)
-				app.showError("PurchaseFailureReason(" + result.message + ")")
+				this.app.showError("PurchaseFailureReason(" + result.message + ")")
 				return@OnIabPurchaseFinishedListener
 			}
 
@@ -54,11 +54,11 @@ class InAppBillingIntegration(app: Activity, private val billingKey: String, pri
 	}
 
 	/**
-	 * Gets the inventory and accept the proper [purchases].
+	 * Gets the inventory and accept the proper [Purchase]s.
 	 */
 	private fun checkPayments() {
 		this.iabHelper!!.queryInventoryAsync(false, IabHelper.QueryInventoryFinishedListener { result, inventory ->
-			if (iabHelper == null) return@QueryInventoryFinishedListener
+			if (this.iabHelper == null) return@QueryInventoryFinishedListener
 
 			if (result.isFailure) {
 				Gdx.app.log("[!] InAppBilling", "Can't get the inventory: " + result.message)

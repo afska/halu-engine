@@ -35,7 +35,6 @@ class AdMobIntegration(app: Activity, private val settings: AdMobSettings) : Int
 	 * Creates the [AdView] in the [layout] if the ads are enabled.
 	 */
 	override fun onCreating(layout: ViewGroup) {
-		// If the user doesn't have the full version
 		if (this.settings.adsEnabled()) {
 			Gdx.app.log("[!] AdMob", "Ads enabled: Adding ads...")
 

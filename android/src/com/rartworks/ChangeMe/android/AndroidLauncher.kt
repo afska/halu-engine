@@ -11,17 +11,12 @@ import java.util.*
  * Launcher for Android.
  */
 class AndroidLauncher : GdxAndroidApp() {
-	/*GdxAppTokens() // TODO: GooglePlay Integrations
-		.withPlayStoreLink("ChangeThisToken")
-		.withAchievementsByScore(AndroidLauncher.achievements)
-	) {*/
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		val mobileServices = AndroidMobileServices(this)
 
 		this.initialize(
 			R.id.layout,
-			GameCore(mobileServices as MobileServices),
+			GameCore(mobileServices),
 			mobileServices.toIntegrations()
 		)
 

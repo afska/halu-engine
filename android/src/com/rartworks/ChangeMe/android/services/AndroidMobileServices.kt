@@ -67,8 +67,8 @@ class AndroidMobileServices(app: Activity) : MobileServices {
 	 * Converts all the integrations to a [List].
 	 */
 	fun toIntegrations() = listOf<Integration>(
-		this.adMob,
-		this.inAppBilling/*,
+		/*this.adMob,
+		this.inAppBilling,
 		this.googlePlay,
 		this.leaderboard*/
 	)

@@ -23,14 +23,14 @@ class GooglePlayIntegration(app: Activity, val settings: GooglePlaySettings) : I
 	 * Starts the login with Google Play Services.
 	 */
 	override fun signIn() {
-		this.app.runOnUiThread { gameHelper.beginUserInitiatedSignIn() }
+		this.app.runOnUiThread { this.gameHelper.beginUserInitiatedSignIn() }
 	}
 
 	/**
 	 * Starts the logout with Google Play Services.
 	 */
 	override fun signOut() {
-		this.app.runOnUiThread { gameHelper.signOut() }
+		this.app.runOnUiThread { this.gameHelper.signOut() }
 	}
 
 	/**

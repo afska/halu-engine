@@ -47,7 +47,7 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 
 		// Create and setup the libgdx game and view
 		val config = AndroidApplicationConfiguration()
-		val gameView = initializeForView(this.game, config)
+		val gameView = this.initializeForView(this.game, config)
 
 		// Add the libgdx view
 		val gameParams = this.createLinearLayoutParams()
@@ -68,9 +68,9 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 	 * Does the stuff that this.initialize() would do for you.
 	 */
 	private fun initializeLibgdxGame() {
-		requestWindowFeature(Window.FEATURE_NO_TITLE)
-		window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-		window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+		this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+		this.window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
 	}
 
 	// -------

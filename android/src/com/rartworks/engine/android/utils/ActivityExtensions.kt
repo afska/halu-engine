@@ -30,7 +30,7 @@ fun Activity.createLinearLayoutParams(): LinearLayout.LayoutParams {
 fun Activity.forceLandscape(config: Configuration) {
 	if (config.orientation == Configuration.ORIENTATION_PORTRAIT)
 		// dafaq did just happened? O_o
-		requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+		this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 }
 
 /**
