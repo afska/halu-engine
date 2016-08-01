@@ -42,7 +42,7 @@ class GooglePlayIntegration(app: Activity, val settings: GooglePlaySettings) : I
 	}
 
 	/**
-	 * Unlocks an achievement.
+	 * Unlocks an achievement by a [score].
 	 */
 	override fun unlockAchievementByScore(score: Int) {
 		val achievementId = this.settings.achievementsByScore[score]
@@ -105,6 +105,6 @@ class GooglePlayIntegration(app: Activity, val settings: GooglePlaySettings) : I
 
 data class GooglePlaySettings(
 	val playStoreLink: String,
-	val achievementsByScore: MutableMap<Int, String>,
+	val achievementsByScore: Map<Int, String>,
 	val preferences: GooglePlayPreferences
 )

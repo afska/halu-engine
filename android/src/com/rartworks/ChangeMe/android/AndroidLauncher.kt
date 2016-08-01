@@ -28,13 +28,4 @@ class AndroidLauncher : GdxAndroidApp() {
 		super.onCreate(savedInstanceState)
 	}
 
-    companion object {
-        private val achievements: MutableMap<Int, String>
-
-        init {
-            achievements = HashMap<Int, String>()
-            achievements.put(100, "ChangeThisToken")
-            achievements.put(200, "ChangeThisToken")
-        }
-    }
 }

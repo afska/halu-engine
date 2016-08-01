@@ -105,7 +105,6 @@ class InAppBillingIntegration(app: Activity, private val billingKey: String, pri
 		}
 	}
 
-
 	override fun onDestroy() {
 		try {
 			if (this.iabHelper != null) this.iabHelper!!.dispose()

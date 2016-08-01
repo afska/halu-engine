@@ -8,12 +8,29 @@ import com.rartworks.engine.android.services.InAppBillingIntegration
 import com.rartworks.engine.android.services.integrations.Integration
 import com.rartworks.engine.android.services.integrations.adMob.AdMobIntegration
 import com.rartworks.engine.android.services.integrations.adMob.AdMobSettings
+import com.rartworks.engine.android.services.integrations.googlePlay.GooglePlayIntegration
+import com.rartworks.engine.android.services.integrations.googlePlay.GooglePlaySettings
+import com.rartworks.engine.android.services.integrations.googlePlay.LeaderboardIntegration
 import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
+import java.util.*
 
 /**
  * Wraps the services as an interface between the core and the Android project.
  */
 class AndroidMobileServices(app: Activity) : MobileServices {
+	companion object {
+		private val achievements: MutableMap<Int, String>
+
+		init {
+			achievements = HashMap<Int, String>()
+			achievements.put(100, "ChangeThisToken")
+			achievements.put(200, "ChangeThisToken")
+			achievements.put(300, "ChangeThisToken")
+			achievements.put(400, "ChangeThisToken")
+			achievements.put(500, "ChangeThisToken")
+		}
+	}
+
 	val adMob = AdMobIntegration(app,
 		AdMobSettings(
 			layoutId = R.id.layout,
@@ -33,11 +50,26 @@ class AndroidMobileServices(app: Activity) : MobileServices {
 		)
 	)
 
+	override val googlePlay = GooglePlayIntegration(app,
+		GooglePlaySettings(
+			playStoreLink = app.getString(R.string.playstore_link),
+			achievementsByScore = achievements,
+			preferences = GamePreferences
+		)
+	)
+
+	override val leaderboard = LeaderboardIntegration(app,
+		this.googlePlay,
+		listOf(app.getString(R.string.leaderboard_high_scores))
+	)
+
 	/**
 	 * Converts all the integrations to a [List].
 	 */
 	fun toIntegrations() = listOf<Integration>(
 		this.adMob,
-		this.inAppBilling
+		this.inAppBilling/*,
+		this.googlePlay,
+		this.leaderboard*/
 	)
 }

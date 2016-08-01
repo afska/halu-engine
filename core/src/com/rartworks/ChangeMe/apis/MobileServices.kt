@@ -6,6 +6,6 @@ import com.rartworks.engine.apis.LeaderboardServices
 
 interface MobileServices {
 	val inAppBilling: InAppBillingServices
-	// val googlePlay: GooglePlayServices // TODO
-	// val leaderBoard: LeaderboardServices // TODO
+	val googlePlay: GooglePlayServices
+	val leaderboard: LeaderboardServices
 }
