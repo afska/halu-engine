@@ -2,6 +2,7 @@ package com.rartworks.ChangeMe.screens
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.rartworks.ChangeMe.AssetsLoader
+import com.rartworks.ChangeMe.GameContext
 import com.rartworks.ChangeMe.GameCore
 import com.rartworks.ChangeMe.screens.input.GameController
 import com.rartworks.engine.AssetsFactory
@@ -18,7 +19,7 @@ import com.rartworks.engine.tween.QuadTween
 /**
  * The main screen of the game.
  */
-class GameScreen(private val game: GameCore) : ComplexDrawable(), Screen {
+class GameScreen(private val game: GameContext) : ComplexDrawable(), Screen {
 	private val TWEEN_TIME = 0.5f
 
 	val dimensions: Dimensions = this.game.dimensions
