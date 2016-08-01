@@ -23,7 +23,7 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 	private lateinit var integrations: List<Integration>
 
 	/**
-	 * Stores the needed data of layout and [integrations].
+	 * Stores the needed data for the game.
 	 */
 	fun initialize(layoutId: Int, game: ApplicationListener, integrations: List<Integration>) {
 		this.layoutId = layoutId

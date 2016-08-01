@@ -27,9 +27,8 @@ class InAppBillingIntegration(app: Activity, private val billingKey: String, pri
 	override fun startPurchase(sku: String) {
 		val requestedPurchase = this.findAvailablePurchaseBySku(sku);
 
-		if (requestedPurchase.acceptIfDebug && this.app.isDebuggable) {
+		if (requestedPurchase.acceptIfDebug && this.app.isDebuggable)
 			return requestedPurchase.accept();
-		}
 
 		val purchaseFinishedListener = IabHelper.OnIabPurchaseFinishedListener { result, purchase ->
 			if (purchase == null || this.iabHelper == null) return@OnIabPurchaseFinishedListener

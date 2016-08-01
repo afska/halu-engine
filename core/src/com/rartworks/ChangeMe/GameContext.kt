@@ -7,5 +7,6 @@ import com.rartworks.engine.rendering.Dimensions
 interface GameContext {
 	val mobileServices: MobileServices?
 	val dimensions: Dimensions
+
 	fun setScreen(screen: Screen)
 }
