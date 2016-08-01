@@ -1,7 +1,7 @@
 package com.rartworks.ChangeMe.screens.input
 
-import com.rartworks.engine.events.*
-import com.rartworks.ChangeMe.screens.*
+import com.rartworks.ChangeMe.screens.GameScreen
+import com.rartworks.engine.events.InputHandler
 
 /**
  * The manager of the input of the game. It reacts to certain events.

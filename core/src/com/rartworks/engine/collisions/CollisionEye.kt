@@ -1,9 +1,12 @@
 package com.rartworks.engine.collisions
 
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.physics.box2d.*
-import com.rartworks.engine.*
-import com.rartworks.engine.utils.*
+import com.badlogic.gdx.physics.box2d.Contact
+import com.badlogic.gdx.physics.box2d.ContactImpulse
+import com.badlogic.gdx.physics.box2d.ContactListener
+import com.badlogic.gdx.physics.box2d.Manifold
+import com.rartworks.engine.AssetsFactory
+import com.rartworks.engine.utils.checkContacts
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**

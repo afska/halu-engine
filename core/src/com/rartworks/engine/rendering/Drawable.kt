@@ -7,7 +7,8 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Matrix4
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.math.Vector3
-import com.rartworks.engine.utils.*
+import com.rartworks.engine.utils.TempVector2
+import com.rartworks.engine.utils.render
 
 private val NORMAL = Vector3(0f, 0f, 1f)
 

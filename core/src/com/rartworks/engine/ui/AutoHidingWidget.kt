@@ -1,7 +1,8 @@
 package com.rartworks.engine.ui
 
-import com.rartworks.engine.rendering.*
-import com.rartworks.engine.utils.*
+import com.rartworks.engine.rendering.Drawable
+import com.rartworks.engine.utils.decreaseUntil
+import com.rartworks.engine.utils.increaseUntil
 
 /**
  * A [Drawable] that hides itself in a fade out when [isVisible] returns false.

@@ -2,9 +2,11 @@ package com.rartworks.engine.collisions
 
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.physics.box2d.Body
-import com.rartworks.engine.*
-import com.rartworks.engine.drawables.*
-import com.rartworks.engine.utils.*
+import com.rartworks.engine.AssetsFactory
+import com.rartworks.engine.drawables.MovieClip
+import com.rartworks.engine.utils.addTrailingZeros
+import com.rartworks.engine.utils.createBody
+import com.rartworks.engine.utils.doIfExists
 import java.util.*
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 

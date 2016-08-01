@@ -2,7 +2,7 @@ package com.rartworks.engine.rendering
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.rartworks.engine.utils.*
+import com.rartworks.engine.utils.joinWith
 
 /**
  * A [Drawable] that contains many [Drawable]s.

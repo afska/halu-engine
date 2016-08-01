@@ -1,5 +1,5 @@
 package com.rartworks.engine.apis
 
 interface InAppBillingServices {
-	fun startRemoveAdsPurchase()
+	fun startPurchase(sku: String)
 }

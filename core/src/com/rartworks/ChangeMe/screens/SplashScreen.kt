@@ -3,14 +3,18 @@ package com.rartworks.ChangeMe.screens
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.rartworks.engine.drawables.*
-import com.rartworks.engine.rendering.*
-import com.rartworks.ChangeMe.*
+import com.rartworks.ChangeMe.AssetsLoader
+import com.rartworks.ChangeMe.GameContext
+import com.rartworks.engine.drawables.ComplexDrawable
+import com.rartworks.engine.drawables.Label
+import com.rartworks.engine.rendering.Dimensions
+import com.rartworks.engine.rendering.Renderer
+import com.rartworks.engine.rendering.Screen
 
 /**
  * The SplashScreen that shows the percentage of loaded sprites.
  */
-class SplashScreen(private val game: GameCore) : ComplexDrawable(), Screen {
+class SplashScreen(private val game: GameContext) : ComplexDrawable(), Screen {
 	private val dimensions: Dimensions get() = this.game.dimensions
 
 	private val progressFont = BitmapFont()

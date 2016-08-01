@@ -2,12 +2,12 @@ package com.rartworks.ChangeMe
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Preferences
-import com.rartworks.engine.apis.*
+import com.rartworks.engine.apis.GooglePlayPreferences
 
 /**
  * The stored preferences of the game.
  */
-object GamePreferences : MobilePreferences {
+object GamePreferences : GooglePlayPreferences {
 	private val ALREADY_PLAYED = "alreadyPlayed"
 	private val SIGNED_IN = "signedIn"
 	private val FULL_VERSION = "fullVersion"
@@ -20,7 +20,7 @@ object GamePreferences : MobilePreferences {
 			this.change { it.putBoolean(SIGNED_IN, value) }
 		}
 
-	var fullVersion: Boolean
+	var withoutAds: Boolean
 		get() = this.preferences.getBoolean(FULL_VERSION)
 		set(value) {
 			this.change { it.putBoolean(FULL_VERSION, value) }
@@ -54,6 +54,4 @@ object GamePreferences : MobilePreferences {
 
 	override fun hasAlreadyPlayed() = this.alreadyPlayed
 	override fun isSignedIn() = this.signedIn
-	override fun hasFullVersion() = this.fullVersion
-	override fun setFullVersion() { this.fullVersion = true }
 }

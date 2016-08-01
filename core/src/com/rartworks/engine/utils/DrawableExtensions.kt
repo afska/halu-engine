@@ -1,6 +1,6 @@
 package com.rartworks.engine.utils
 
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.rendering.Drawable
 
 /**
  * - Inherits the position, alpha, scale, and rotation values from [another] [Drawable].

@@ -2,7 +2,8 @@ package com.rartworks.engine.drawables
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.math.Vector2
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.rendering.Drawable
+import com.rartworks.engine.rendering.IComplexDrawable
 
 /**
  * Implementation of [IComplexDrawable] with a mutable list of childs.

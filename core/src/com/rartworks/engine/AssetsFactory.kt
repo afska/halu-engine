@@ -14,8 +14,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.I18NBundle
-import com.rartworks.engine.collisions.*
-import com.rartworks.engine.drawables.*
+import com.rartworks.engine.collisions.CollisionInfo
+import com.rartworks.engine.drawables.MovieClipInfo
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**

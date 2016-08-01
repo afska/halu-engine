@@ -7,8 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
-import com.rartworks.engine.collisions.*
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.collisions.CollisionInfo
+import com.rartworks.engine.collisions.Polygon
+import com.rartworks.engine.rendering.Drawable
 
 private val FRAME_DURATION = 0.03f
 

@@ -4,7 +4,7 @@ import box2dLight.PointLight
 import box2dLight.RayHandler
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.math.Vector2
-import com.rartworks.engine.*
+import com.rartworks.engine.AssetsFactory
 
 /**
  * A source of lights that extends the *Box2dLights* [RayHandler].

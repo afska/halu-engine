@@ -1,21 +1,21 @@
 package com.rartworks.engine.rendering
 
+//import com.badlogic.gdx.graphics.g2d.BitmapFont // DEBUG
+
+//import com.badlogic.gdx.graphics.glutils.ShapeRenderer // PERFORMANCE
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
-//import com.badlogic.gdx.graphics.g2d.BitmapFont // DEBUG
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+//import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer // DEBUG
 import com.badlogic.gdx.utils.Disposable
-
-//import com.badlogic.gdx.graphics.glutils.ShapeRenderer // PERFORMANCE
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer // DEBUG
-import com.rartworks.engine.AssetsFactory // DEBUG
+//import com.rartworks.engine.AssetsFactory
 
 class Renderer(private val dimensions: Dimensions) : Disposable {
 	val camera: OrthographicCamera = OrthographicCamera()
 	private val spriteBatch = SpriteBatch()
 	//private val shapeRenderer = ShapeRenderer() // PERFORMANCE
-	private val box2dDebugRenderer = Box2DDebugRenderer() // DEBUG
+	//private val box2dDebugRenderer = Box2DDebugRenderer() // DEBUG
 	//private val fpsFont = BitmapFont() // DEBUG
 
 	init {
@@ -38,7 +38,7 @@ class Renderer(private val dimensions: Dimensions) : Disposable {
 		this.shapeRenderer.end()
 		*/
 
-		this.box2dDebugRenderer.render(AssetsFactory.box2dWorld, this.camera.combined) // DEBUG
+		//this.box2dDebugRenderer.render(AssetsFactory.box2dWorld, this.camera.combined) // DEBUG
 	}
 
 	override fun dispose() {

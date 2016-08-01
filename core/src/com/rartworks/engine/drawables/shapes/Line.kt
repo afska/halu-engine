@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.rendering.Drawable
 
 /**
  * A line [from] a point [to] another, with a [lineWidth].

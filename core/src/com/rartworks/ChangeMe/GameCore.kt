@@ -2,15 +2,15 @@ package com.rartworks.ChangeMe
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.physics.box2d.Box2D
-import com.rartworks.engine.apis.*
-import com.rartworks.engine.rendering.*
-import com.rartworks.ChangeMe.screens.*
+import com.rartworks.ChangeMe.apis.MobileServices
+import com.rartworks.ChangeMe.screens.SplashScreen
+import com.rartworks.engine.rendering.Dimensions
 
 /**
  * The main class of the game.
  */
-class GameCore(val mobileServices: MobileServices) : Game() {
-	val dimensions = Dimensions(1280f, 720f)
+class GameCore(override val mobileServices: MobileServices?) : Game(), GameContext {
+	override val dimensions = Dimensions(1280f, 720f)
 
 	/**
 	 * Loads everything and sets the SplashScreen.
