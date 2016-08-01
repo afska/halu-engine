@@ -1,3 +1,5 @@
+/*
+
 package com.rartworks.engine.android.services
 
 import android.content.Intent
@@ -24,7 +26,7 @@ class GooglePlay(private val app: GdxAndroidApp) : GooglePlayServices {
 	/**
 	 * Creates a Game Helper, used to talk to the Google Play Services.
 	 */
-	fun initialize() {
+	fun initialize() { // onCreated
 		this.gameHelper = GameHelper(this.app, GameHelper.CLIENT_GAMES)
 		this.gameHelper.enableDebugLog(false)
 		this.gameHelper.setMaxAutoSignInAttempts(
@@ -132,3 +134,5 @@ class GooglePlay(private val app: GdxAndroidApp) : GooglePlayServices {
 			this.gameHelper.disconnect()
 	}
 }
+
+*/

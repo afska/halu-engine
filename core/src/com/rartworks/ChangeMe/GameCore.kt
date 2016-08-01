@@ -2,9 +2,9 @@ package com.rartworks.ChangeMe
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.physics.box2d.Box2D
-import com.rartworks.engine.apis.*
-import com.rartworks.engine.rendering.*
-import com.rartworks.ChangeMe.screens.*
+import com.rartworks.ChangeMe.screens.SplashScreen
+import com.rartworks.engine.apis.MobileServices
+import com.rartworks.engine.rendering.Dimensions
 
 /**
  * The main class of the game.

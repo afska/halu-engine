@@ -2,9 +2,10 @@ package com.rartworks.ChangeMe.desktop
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration
-import com.rartworks.ChangeMe.*
-import com.rartworks.engine.apis.*
-import com.rartworks.engine.desktop.*
+import com.rartworks.ChangeMe.GameCore
+import com.rartworks.engine.apis.MobileServices
+import com.rartworks.engine.desktop.GooglePlayServicesMock
+import com.rartworks.engine.desktop.InAppBillingServicesMock
 
 /**
  * Launcher for desktop.

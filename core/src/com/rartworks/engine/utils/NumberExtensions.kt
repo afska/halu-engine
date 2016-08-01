@@ -1,7 +1,6 @@
 package com.rartworks.engine.utils
 
 import com.badlogic.gdx.math.MathUtils
-import java.lang.String
 
 /**
  * Increases the number until a max [limit].

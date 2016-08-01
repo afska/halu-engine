@@ -1,7 +1,7 @@
 package com.rartworks.engine.events
 
 import com.badlogic.gdx.math.Vector2
-import com.rartworks.engine.utils.*
+import com.rartworks.engine.utils.TempVector2
 
 /**
  * An action that can be executed by tapping on the screen.

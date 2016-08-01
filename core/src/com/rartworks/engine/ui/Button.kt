@@ -1,7 +1,7 @@
 package com.rartworks.engine.ui
 
-import com.rartworks.engine.*
-import com.rartworks.engine.drawables.*
+import com.rartworks.engine.AssetsFactory
+import com.rartworks.engine.drawables.MovieClip
 
 /**
  * A button that can be pressed.

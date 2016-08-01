@@ -2,7 +2,7 @@ package com.rartworks.engine.events
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputProcessor
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.rendering.Dimensions
 
 /**
  * A wrapper of an *libgdx*'s [InputProcessor], with a simplified interface.

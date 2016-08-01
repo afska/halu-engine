@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Google Play services IDs.
--->
 <resources>
-	<string name="app_id">ChangeThisToken</string>
+	<!-- Metadata -->
 	<string name="package_name">com.rartworks.ChangeMe.android</string>
+	<string name="playstore_link">ChangeThisToken</string>
+
+	<!-- Services -->
+	<string name="app_id">ChangeThisToken</string>
+	<string name="billing_key">ChangeThisToken</string>
+
+	<!-- Ads -->
+	<string name="ads_id">ChangeThisToken</string>
+
+	<!-- Leaderboards -->
 	<string name="leaderboard_high_scores">ChangeThisToken</string>
+
+	<!-- SKUs -->
+	<string name="sku_remove_ads">ChangeThisToken</string>
+
 	<item type="id" name="layout" />
 </resources>

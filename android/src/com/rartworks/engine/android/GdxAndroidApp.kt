@@ -1,37 +1,39 @@
 package com.rartworks.engine.android
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
-import android.widget.Toast
-
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
-import com.rartworks.engine.android.services.*
-import com.rartworks.ChangeMe.*
-import com.rartworks.ChangeMe.android.R
-import com.rartworks.engine.apis.*
+import com.rartworks.ChangeMe.GameCore
+import com.rartworks.engine.android.services.InAppBillingIntegration
+import com.rartworks.engine.android.services.integrations.Integration
+import com.rartworks.engine.android.utils.createLinearLayoutParams
+import com.rartworks.engine.android.utils.forceLandscape
+import com.rartworks.engine.apis.MobileServices
 
 /**
  * An Android LibGDX app.
  */
-abstract class GdxAndroidApp(var tokens: GdxAppTokens) : AndroidApplication() {
-	var preferences: MobilePreferences = GamePreferences
+abstract class GdxAndroidApp() : AndroidApplication() {
+	private var layoutId: Int = 0
+	private lateinit var integrations: List<Integration>
 
-	private var googlePlay: GooglePlay? = null
-	private var inAppBilling: InAppBilling? = null
+	/**
+	 * Stores the needed data of layout and [integrations].
+	 */
+	fun initialize(layoutId: Int, integrations: List<Integration>) {
+		this.layoutId = layoutId
+		this.integrations = integrations
+	}
 
+	/**
+	 * Initializes the game and the integrations.
+	 */
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -41,11 +43,12 @@ abstract class GdxAndroidApp(var tokens: GdxAppTokens) : AndroidApplication() {
 		val layout = LinearLayout(this)
 		layout.setGravity(Gravity.CENTER_HORIZONTAL)
 		layout.orientation = LinearLayout.VERTICAL
-		layout.id = R.id.layout
+		layout.id = this.layoutId
 
 		// Create services
+		// TODO: QUIÉN LE PASA AL JUEGO LAS COSAS?
 		this.googlePlay = GooglePlay(this)
-		this.inAppBilling = InAppBilling(this)
+		this.inAppBilling = InAppBillingIntegration(this)
 		val services = MobileServices(this.googlePlay!!, this.inAppBilling!!)
 
 		// Create and setup the libgdx game and view
@@ -57,63 +60,14 @@ abstract class GdxAndroidApp(var tokens: GdxAppTokens) : AndroidApplication() {
 		gameParams.weight = 1f
 		layout.addView(gameView, gameParams)
 
-		// If the user doesn't have the full version
-		if (!this.preferences.hasFullVersion()) {
-			// Create and setup the AdMob view
-			val adView = AdView(this)
-			adView.adUnitId = this.tokens.adsId
-			adView.adSize = AdSize.SMART_BANNER
-
-			// Add the AdMob view
-			layout.addView(adView, this.createLinearLayoutParams())
-
-			// Load the ads
-			adView.loadAd(AdRequest.Builder().build())
-		}
+		this.integrations.forEach { it.onCreate(layout) }
 
 		// Hook it all up
 		setContentView(layout)
 
 		// Initialize services
-		this.googlePlay!!.initialize()
-		this.inAppBilling!!.initialize()
+		this.integrations.forEach { it.onCreated() }
 	}
-
-	/**
-	 * Removes the ads.
-	 */
-	fun removeAds() {
-		Gdx.app.log("IAB", "Removing ads...")
-		this.preferences.setFullVersion()
-
-		runOnUiThread {
-			val layout = findViewById(R.id.layout) as LinearLayout
-			if (layout.childCount == 2)
-				layout.removeViewAt(1)
-		}
-	}
-
-	/**
-	 * Displays a toast with an error.
-	 */
-	fun showError(text: String) {
-		Toast.makeText(context, text, Toast.LENGTH_LONG).show()
-	}
-
-	/**
-	 * Returns if the application is in debug mode.
-	 */
-	val isDebuggable: Boolean
-		get() {
-			val pm = this.packageManager
-
-			try {
-				val appInfo = pm.getApplicationInfo(this.packageName, 0)
-				return appInfo.flags != 0  and ApplicationInfo.FLAG_DEBUGGABLE
-			} catch (e: PackageManager.NameNotFoundException) {
-				return false
-			}
-		}
 
 	/**
 	 * Does the stuff that this.initialize() would do for you.
@@ -124,45 +78,32 @@ abstract class GdxAndroidApp(var tokens: GdxAppTokens) : AndroidApplication() {
 		window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
 	}
 
-	/**
-	 * Creates the layout params for the views.
-	 */
-	private fun createLinearLayoutParams(): LinearLayout.LayoutParams {
-		return LinearLayout.LayoutParams(
-			LinearLayout.LayoutParams.WRAP_CONTENT,
-			LinearLayout.LayoutParams.WRAP_CONTENT)
-	}
-
 	// -------
 	// Events:
 	// -------
 
 	override fun onStart() {
 		super.onStart()
-		this.googlePlay!!.onStart()
+		this.integrations.forEach { it.onStart() }
 	}
 
 	override fun onStop() {
 		super.onStop()
-		this.googlePlay!!.onStop()
+		this.integrations.forEach { it.onStop() }
 	}
 
 	override fun onDestroy() {
 		super.onDestroy()
-		this.inAppBilling!!.onDestroy()
+		this.integrations.forEach { it.onDestroy() }
 	}
 
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
 		super.onActivityResult(requestCode, resultCode, data)
-		this.googlePlay!!.onActivityResult(requestCode, resultCode, data)
-		this.inAppBilling!!.onActivityResult(requestCode, resultCode, data)
+		this.integrations.forEach { it.onActivityResult(requestCode, resultCode, data) }
 	}
 
 	override fun onConfigurationChanged(newConfig: Configuration) {
 		super.onConfigurationChanged(newConfig)
-
-		if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
-			// dafaq did just happened? O_o
-			requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+		this.forceLandscape(newConfig)
 	}
 }

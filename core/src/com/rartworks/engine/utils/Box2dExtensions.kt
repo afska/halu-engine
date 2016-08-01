@@ -4,7 +4,7 @@ import aurelienribon.bodyeditor.BodyEditorLoader
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.physics.box2d.BodyDef
 import com.badlogic.gdx.physics.box2d.FixtureDef
-import com.rartworks.engine.collisions.*
+import com.rartworks.engine.collisions.CollisionInfo
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**

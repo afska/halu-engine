@@ -1,7 +1,7 @@
 package com.rartworks.engine.tween
 
 import aurelienribon.tweenengine.TweenAccessor
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.rendering.Drawable
 
 /**
  * A *TweenEngine*'s [TweenAccessor] for [Drawable] types.

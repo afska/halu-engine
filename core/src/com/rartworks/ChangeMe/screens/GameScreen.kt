@@ -1,14 +1,19 @@
 package com.rartworks.ChangeMe.screens
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.rartworks.engine.drawables.*
-import com.rartworks.engine.rendering.*
-import com.rartworks.engine.tween.*
-import com.rartworks.ChangeMe.*
-import com.rartworks.ChangeMe.screens.input.*
-import com.rartworks.engine.*
+import com.rartworks.ChangeMe.AssetsLoader
+import com.rartworks.ChangeMe.GameCore
+import com.rartworks.ChangeMe.screens.input.GameController
+import com.rartworks.engine.AssetsFactory
 import com.rartworks.engine.collisions.CollisionInfo
-import com.rartworks.engine.events.*
+import com.rartworks.engine.drawables.ComplexDrawable
+import com.rartworks.engine.drawables.Label
+import com.rartworks.engine.drawables.MovieClip
+import com.rartworks.engine.events.InputHandler
+import com.rartworks.engine.rendering.Dimensions
+import com.rartworks.engine.rendering.Renderer
+import com.rartworks.engine.rendering.Screen
+import com.rartworks.engine.tween.QuadTween
 
 /**
  * The main screen of the game.

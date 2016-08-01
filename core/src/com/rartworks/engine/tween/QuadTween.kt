@@ -1,7 +1,7 @@
 package com.rartworks.engine.tween
 
 import aurelienribon.tweenengine.*
-import com.rartworks.engine.rendering.*
+import com.rartworks.engine.rendering.Drawable
 
 /**
  * A tween for [Drawable]s that uses the *easeInOutQuad* function.
