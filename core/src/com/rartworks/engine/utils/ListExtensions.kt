@@ -4,11 +4,32 @@ package com.rartworks.engine.utils
  * Like [forEach], but it doesn't allocate anything.
  */
 inline fun <T: Any> List<T>.fastForEach(action: (T)  -> (Unit)) {
-	for (i in 0..this.size) {
+	for (i in 0..this.size - 1) {
 		val element = this[i]
 		action(element)
 	}
 }
+
+/**
+ * Like [forEach], but it doesn't allocate anything.
+ */
+inline fun <T: Any> Array<T>.fastForEach(action: (T)  -> (Unit)) {
+	for (i in 0..this.size - 1) {
+		val element = this[i]
+		action(element)
+	}
+}
+
+/**
+ * Like [forEach], but it doesn't allocate anything.
+ */
+inline fun <T: Any> List<T>.fastForEachIndexed(action: (Int, T)  -> (Unit)) {
+	for (i in 0..this.size - 1) {
+		val element = this[i]
+		action(i, element)
+	}
+}
+
 
 /**
  * Like [minBy], but it doesn't allocate anything.
