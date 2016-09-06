@@ -24,19 +24,21 @@ class Polygon(private val movieClip: MovieClip) {
 	private var outOfSync = false
 
 	private val framesCount: Int
+	private val framesNames: List<String>
 	private val currentFrameName: String get() {
-		val info = this.movieClip.info
-
 		return if (this.framesCount == 1)
-			info.regionName
-		else {
-			val index = (this.movieClip.currentFrameIndex + 1).addTrailingZeros(4)
-			"${info.regionName}_$index"
-		}
+			this.movieClip.info.regionName
+		else
+			this.framesNames[this.movieClip.currentFrameIndex]
+
 	}
 
 	init {
 		this.framesCount = this.movieClip.info.frames.count()
+		this.framesNames = (0 .. this.framesCount - 1).map {
+			val index = (it + 1).addTrailingZeros(4)
+			"${this.movieClip.info.regionName}_$index"
+		}
 		this.loadBody()
 	}
 
