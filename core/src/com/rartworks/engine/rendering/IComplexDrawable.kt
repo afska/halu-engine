@@ -2,6 +2,7 @@ package com.rartworks.engine.rendering
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.rartworks.engine.utils.fastForEach
 import com.rartworks.engine.utils.joinWith
 
 /**
@@ -11,7 +12,7 @@ interface IComplexDrawable : Drawable {
 	val childs: MutableList<Drawable>
 
 	override fun update(delta: Float) {
-		this.childs.forEach {
+		this.childs.fastForEach {
 			it.update(delta)
 
 			it.joinWith(this) {
@@ -21,11 +22,11 @@ interface IComplexDrawable : Drawable {
 	}
 
 	override fun draw(spriteBatch: SpriteBatch) {
-		this.childs.forEach { it.render(spriteBatch) }
+		this.childs.fastForEach { it.render(spriteBatch) }
 	}
 
 	override fun draw(shapeRenderer: ShapeRenderer) {
-		this.childs.forEach { it.render(shapeRenderer) }
+		this.childs.fastForEach { it.render(shapeRenderer) }
 	}
 
 	/**
