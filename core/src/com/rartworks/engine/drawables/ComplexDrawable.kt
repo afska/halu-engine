@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.math.Vector2
 import com.rartworks.engine.rendering.Drawable
 import com.rartworks.engine.rendering.IComplexDrawable
+import com.rartworks.engine.utils.fastMaxBy
+import com.rartworks.engine.utils.fastMinBy
 
 /**
  * Implementation of [IComplexDrawable] with a mutable list of childs.
@@ -20,16 +22,16 @@ open class ComplexDrawable : IComplexDrawable {
 	override val width: Float get() {
 		if (this.childs.isEmpty()) return 0f
 
-		val min = this.childs.minBy { it.position.x }!!
-		val max = this.childs.maxBy { it.position.x + it.width }!!
+		val min = this.childs.fastMinBy { it.position.x }!!
+		val max = this.childs.fastMaxBy { it.position.x + it.width }!!
 		return (max.position.x + max.width) - (min.position.x)
 	}
 
 	override val height: Float get() {
 		if (this.childs.isEmpty()) return 0f
 
-		val min = this.childs.minBy({ it.position.y })!!
-		val max = this.childs.maxBy({ it.position.y + it.height })!!
+		val min = this.childs.fastMinBy({ it.position.y })!!
+		val max = this.childs.fastMaxBy({ it.position.y + it.height })!!
 		return (max.position.y + max.height) - (min.position.y)
 	}
 }
