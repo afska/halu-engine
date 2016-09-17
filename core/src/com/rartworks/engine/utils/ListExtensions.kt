@@ -61,3 +61,11 @@ fun <T: Any> List<T>.fastMaxBy(criteria: (T)  -> (Float)): T {
 
 	return max
 }
+
+/**
+ * Returns a random element of the collection.
+ */
+fun <T: Any> List<T>.getRandomElement(): T {
+	val index = 0.toRandom(this.count() - 1)
+	return this[index]
+}
