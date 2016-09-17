@@ -20,11 +20,7 @@ class QuadTween(private val drawable: Drawable) {
 	 * It is possible to [configure] the tween using custom *TweenEngine* options.
 	 */
 	fun start(newValue: Float, duration: Float, configure: (Tween) -> (Tween) = { it }, parameter: TweenParameter = TweenParameter.ALPHA, onFinish: () -> (Unit) = {}) {
-		val callback = object : TweenCallback {
-			override fun onEvent(type: Int, source: BaseTween<*>) {
-				onFinish()
-			}
-		}
+		val callback = TweenCallback { type, source -> onFinish() }
 
 		val tween = Tween
 			.to(this.drawable, parameter.id, duration)
