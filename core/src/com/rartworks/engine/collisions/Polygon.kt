@@ -14,17 +14,18 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
  * A polygon used by the engine for collision detection.
  * It tracks the movieClip parameters, and replicates its variables in the *Box2d* world.
  */
-class Polygon(private val movieClip: MovieClip) {
+class Polygon() : CollisionShape {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
+	private lateinit var movieClip: MovieClip
 	private var currentBody: Body? = null
 	private var currentProperties: HashMap<String, Number> = hashMapOf(
 		Pair("frameIndex", 0), Pair("scale", 1f)
 	)
 	private var outOfSync = false
 
-	private val framesCount: Int
-	private val framesNames: List<String>
+	private var framesCount: Int = 0
+	private lateinit var framesNames: List<String>
 	private val currentFrameName: String get() {
 		return if (this.framesCount == 1)
 			this.movieClip.info.regionName
@@ -33,7 +34,9 @@ class Polygon(private val movieClip: MovieClip) {
 
 	}
 
-	init {
+	override fun initialize(movieClip: MovieClip) {
+		this.movieClip = movieClip
+
 		this.framesCount = this.movieClip.info.frames.count()
 		this.framesNames = (0 .. this.framesCount - 1).map {
 			val index = (it + 1).addTrailingZeros(4)
@@ -46,7 +49,7 @@ class Polygon(private val movieClip: MovieClip) {
 	 * Keeps track of the current frame and scale of the movie clip.
 	 * If it has changed, recreates the adapted polygon.
 	 */
-	fun updateWorld() {
+	override fun updateWorld() {
 		this.syncWithMovieClip("frameIndex", this.movieClip.currentFrameIndex)
 		this.syncWithMovieClip("scale", this.movieClip.scale)
 		if (this.outOfSync) {

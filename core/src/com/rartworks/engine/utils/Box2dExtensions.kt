@@ -3,6 +3,7 @@ package com.rartworks.engine.utils
 import aurelienribon.bodyeditor.BodyEditorLoader
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.physics.box2d.BodyDef
+import com.badlogic.gdx.physics.box2d.CircleShape
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.rartworks.engine.collisions.CollisionInfo
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
@@ -23,6 +24,28 @@ fun BodyEditorLoader.createBody(world: Box2dWorld, name: String, width: Float, c
 		fixture.filter.maskBits = it.maskBits
 	}
 	this.attachFixture(body, name, fixture, width)
+
+	return body
+}
+
+/**
+ * // TODO Descripción y abstraer lógica
+ */
+fun BodyEditorLoader.createCircleBody(world: Box2dWorld, width: Float, collisionInfo: CollisionInfo?): Body {
+	val bodyDef = BodyDef()
+	bodyDef.type = BodyDef.BodyType.DynamicBody
+
+	val body = world.createBody(bodyDef)
+
+	val fixture = FixtureDef()
+	collisionInfo.doIfExists {
+		fixture.filter.categoryBits = it.categoryBits
+		fixture.filter.maskBits = it.maskBits
+	}
+
+	fixture.shape = CircleShape()
+	fixture.shape.radius = width / 2
+	body.createFixture(fixture)
 
 	return body
 }

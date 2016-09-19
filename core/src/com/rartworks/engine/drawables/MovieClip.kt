@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array
 import com.rartworks.engine.collisions.CollisionInfo
 import com.rartworks.engine.collisions.Polygon
 import com.rartworks.engine.rendering.Drawable
+import com.rartworks.engine.utils.doIfExists
 
 private val FRAME_DURATION = 0.03f
 
@@ -28,13 +29,12 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 	val currentFrame: TextureRegion get() = this.getKeyFrame(this.runTime)
 	val currentFrameIndex: Int get() = (this.runTime / FRAME_DURATION).toInt()
 
-	private val polygon: Polygon?
 	private var isPlaying = true
 	private var loop: LoopInfo = LoopInfo(1, info.frames.size)
 	private var runTime = 0f
 
 	init {
-		this.polygon = if (this.info.collisionInfo != null) Polygon(this) else null
+		this.info.collisionInfo.doIfExists { it.shape.initialize(this) }
 	}
 
 	override fun update(delta: Float) {
@@ -47,7 +47,7 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 	}
 
 	override fun updateAbs(delta: Float) {
-		this.polygon?.updateWorld()
+		this.info.collisionInfo.doIfExists { it.shape.updateWorld() }
 	}
 
 	override fun draw(spriteBatch: SpriteBatch) {
