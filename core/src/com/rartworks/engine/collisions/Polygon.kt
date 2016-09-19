@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body
 import com.rartworks.engine.AssetsFactory
 import com.rartworks.engine.drawables.MovieClip
 import com.rartworks.engine.utils.addTrailingZeros
-import com.rartworks.engine.utils.createBody
+import com.rartworks.engine.utils.createPolygonBody
 import com.rartworks.engine.utils.doIfExists
 import java.util.*
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
@@ -34,6 +34,9 @@ class Polygon() : CollisionShape {
 
 	}
 
+	/**
+	 * Saves the [movieClip] and loads the first [Body].
+	 */
 	override fun initialize(movieClip: MovieClip) {
 		this.movieClip = movieClip
 
@@ -81,9 +84,9 @@ class Polygon() : CollisionShape {
 			this.box2dWorld.destroyBody(this.currentBody)
 		}
 
-		this.currentBody = AssetsFactory.polygons.createBody(
-			this.box2dWorld, this.currentFrameName,
-			this.movieClip.scaledWidth, this.movieClip.info.collisionInfo
+		this.currentBody = AssetsFactory.polygons.createPolygonBody(
+			this.box2dWorld, this.movieClip.scaledWidth,
+			this.movieClip.info.collisionInfo!!, this.currentFrameName
 		)
 	}
 }

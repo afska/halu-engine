@@ -34,7 +34,7 @@ inline fun <T: Any> List<T>.fastForEachIndexed(action: (Int, T)  -> (Unit)) {
 /**
  * Like [minBy], but it doesn't allocate anything.
  */
-fun <T: Any> List<T>.fastMinBy(criteria: (T)  -> (Float)): T {
+inline fun <T: Any> List<T>.fastMinBy(criteria: (T)  -> (Float)): T {
 	var min = this.first() ; var minValue = criteria(min)
 	this.fastForEach {
 		val value = criteria(it)
@@ -50,7 +50,7 @@ fun <T: Any> List<T>.fastMinBy(criteria: (T)  -> (Float)): T {
 /**
  * Like [maxBy], but it doesn't allocate anything.
  */
-fun <T: Any> List<T>.fastMaxBy(criteria: (T)  -> (Float)): T {
+inline fun <T: Any> List<T>.fastMaxBy(criteria: (T)  -> (Float)): T {
 	var max = this.first() ; var maxValue = criteria(max)
 	this.fastForEach {
 		val value = criteria(it)

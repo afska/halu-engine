@@ -10,44 +10,24 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**
  * Creates a Box2d body in a [world] with a human [name], a [width], and [collisionInfo].
+ * The fixture is a polygon.
  */
-fun BodyEditorLoader.createBody(world: Box2dWorld, name: String, width: Float, collisionInfo: CollisionInfo?): Body {
-	val bodyDef = BodyDef()
-	bodyDef.type = BodyDef.BodyType.DynamicBody
-
-	val body = world.createBody(bodyDef)
-	body.userData = name
-
-	val fixture = FixtureDef()
-	collisionInfo.doIfExists {
-		fixture.filter.categoryBits = it.categoryBits
-		fixture.filter.maskBits = it.maskBits
+fun BodyEditorLoader.createPolygonBody(world: Box2dWorld, width: Float, collisionInfo: CollisionInfo, name: String): Body {
+	return createBox2dBody(world, collisionInfo) { body, fixture ->
+		this.attachFixture(body, name, fixture, width)
 	}
-	this.attachFixture(body, name, fixture, width)
-
-	return body
 }
 
 /**
- * // TODO Descripción y abstraer lógica
+ * Creates a Box2d body in a [world] with a human [name], a [width], and [collisionInfo].
+ * The fixture is a circle.
  */
-fun BodyEditorLoader.createCircleBody(world: Box2dWorld, width: Float, collisionInfo: CollisionInfo?): Body {
-	val bodyDef = BodyDef()
-	bodyDef.type = BodyDef.BodyType.DynamicBody
-
-	val body = world.createBody(bodyDef)
-
-	val fixture = FixtureDef()
-	collisionInfo.doIfExists {
-		fixture.filter.categoryBits = it.categoryBits
-		fixture.filter.maskBits = it.maskBits
+fun BodyEditorLoader.createCircleBody(world: Box2dWorld, width: Float, collisionInfo: CollisionInfo): Body {
+	return createBox2dBody(world, collisionInfo) { body, fixture ->
+		fixture.shape = CircleShape()
+		fixture.shape.radius = width / 2
+		body.createFixture(fixture)
 	}
-
-	fixture.shape = CircleShape()
-	fixture.shape.radius = width / 2
-	body.createFixture(fixture)
-
-	return body
 }
 
 /**
@@ -55,4 +35,23 @@ fun BodyEditorLoader.createCircleBody(world: Box2dWorld, width: Float, collision
  */
 fun Box2dWorld.checkContacts() {
 	this.step(1f, 1, 1)
+}
+
+/**
+ * Creates a [Body] and calls [addFixture] after. Returns the [Body].
+ */
+private inline fun createBox2dBody(world: Box2dWorld, collisionInfo: CollisionInfo, addFixture: (Body, FixtureDef) -> (Unit)): Body {
+	val bodyDef = BodyDef()
+	bodyDef.type = BodyDef.BodyType.DynamicBody
+
+	val body = world.createBody(bodyDef)
+	body.userData = collisionInfo.categoryBits
+
+	val fixture = FixtureDef()
+	fixture.filter.categoryBits = collisionInfo.categoryBits
+	fixture.filter.maskBits = collisionInfo.maskBits
+
+	addFixture(body, fixture)
+
+	return body
 }

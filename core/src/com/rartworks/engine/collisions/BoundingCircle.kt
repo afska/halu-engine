@@ -12,13 +12,24 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 class BoundingCircle() : CollisionShape {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
+	private lateinit var movieClip: MovieClip
 	private lateinit var body: Body
 
+	/**
+	 * Saves the [movieClip] and creates the [Body].
+	 */
 	override fun initialize(movieClip: MovieClip) {
+		this.movieClip = movieClip
+
 		this.body = AssetsFactory.polygons.createCircleBody(
-			this.box2dWorld, movieClip.scaledWidth, movieClip.info.collisionInfo
+			this.box2dWorld, this.movieClip.scaledWidth, this.movieClip.info.collisionInfo!!
 		)
 	}
 
-	override fun updateWorld() { }
+	/**
+	 * Updates the position of the shape.
+	 */
+	override fun updateWorld() {
+		this.body.setTransform(this.movieClip.toOriginPosition(), 0f)
+	}
 }

@@ -14,6 +14,9 @@ interface AutoHidingWidget : Drawable {
 		this.autoHide(1f, delta)
 	}
 
+	/**
+	 * Depending on [isVisible], it slightly increases or decreases the [alpha].
+	 */
 	fun autoHide(maxAlpha: Float, delta: Float) {
 		val speed = 1f * delta / (1 / maxAlpha)
 
