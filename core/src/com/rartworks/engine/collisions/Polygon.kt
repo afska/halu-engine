@@ -6,7 +6,6 @@ import com.rartworks.engine.AssetsFactory
 import com.rartworks.engine.drawables.MovieClip
 import com.rartworks.engine.utils.addTrailingZeros
 import com.rartworks.engine.utils.createPolygonBody
-import com.rartworks.engine.utils.doIfExists
 import java.util.*
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
@@ -17,8 +16,9 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 class Polygon() : CollisionShape {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
+	override lateinit var body: Body
+
 	private lateinit var movieClip: MovieClip
-	private var currentBody: Body? = null
 	private var currentProperties: HashMap<String, Number> = hashMapOf(
 		Pair("frameIndex", 0), Pair("scale", 1f)
 	)
@@ -56,14 +56,14 @@ class Polygon() : CollisionShape {
 		this.syncWithMovieClip("frameIndex", this.movieClip.currentFrameIndex)
 		this.syncWithMovieClip("scale", this.movieClip.scale)
 		if (this.outOfSync) {
-			this.loadBody()
+			this.reloadBody()
 			this.outOfSync = false
 		}
 
 		val rotationInRadians = this.movieClip.rotation * MathUtils.degreesToRadians
 		val cornerPosition = this.movieClip.toCornerPosition()
 
-		this.currentBody?.setTransform(cornerPosition, rotationInRadians)
+		this.body.setTransform(cornerPosition, rotationInRadians)
 	}
 
 	/**
@@ -79,12 +79,16 @@ class Polygon() : CollisionShape {
 	/**
 	 * Reloads the *Box2d* body.
 	 */
-	private fun loadBody() {
-		this.currentBody.doIfExists {
-			this.box2dWorld.destroyBody(this.currentBody)
-		}
+	private fun reloadBody() {
+		this.box2dWorld.destroyBody(this.body)
+		this.loadBody()
+	}
 
-		this.currentBody = AssetsFactory.polygons.createPolygonBody(
+	/**
+	 * Loads the *Box2d* body.
+	 */
+	private fun loadBody() {
+		this.body = AssetsFactory.polygons.createPolygonBody(
 			this.box2dWorld, this.movieClip.scaledWidth,
 			this.movieClip.info.collisionInfo!!, this.currentFrameName
 		)

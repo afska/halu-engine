@@ -12,8 +12,9 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 class BoundingCircle() : CollisionShape {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
+	override lateinit var body: Body
+
 	private lateinit var movieClip: MovieClip
-	private lateinit var body: Body
 
 	/**
 	 * Saves the [movieClip] and creates the [Body].
