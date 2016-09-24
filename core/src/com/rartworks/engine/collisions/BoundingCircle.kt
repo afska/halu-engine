@@ -8,8 +8,10 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**
  * A bounding circle used by the engine for collision detection.
+ * The [handicap] is a number in (0, 1]:
+ * 1 means no collisions at all, 0 means the full area will be used.
  */
-class BoundingCircle() : CollisionShape {
+class BoundingCircle(private val handicap: Float = 0f) : CollisionShape {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
 	override lateinit var body: Body
@@ -22,8 +24,9 @@ class BoundingCircle() : CollisionShape {
 	override fun initialize(movieClip: MovieClip) {
 		this.movieClip = movieClip
 
+		val width = this.movieClip.scaledWidth * (1 - this.handicap)
 		this.body = AssetsFactory.polygons.createCircleBody(
-			this.box2dWorld, this.movieClip.scaledWidth, this.movieClip.info.collisionInfo!!
+			this.box2dWorld, width, this.movieClip.info.collisionInfo!!
 		)
 	}
 
