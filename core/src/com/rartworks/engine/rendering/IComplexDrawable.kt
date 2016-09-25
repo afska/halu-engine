@@ -8,8 +8,8 @@ import com.rartworks.engine.utils.joinWith
 /**
  * A [Drawable] that contains many [Drawable]s.
  */
-interface IComplexDrawable : Drawable {
-	val childs: MutableList<Drawable>
+interface IComplexDrawable<T : Drawable> : Drawable {
+	val childs: MutableList<T>
 
 	override fun update(delta: Float) {
 		this.childs.fastForEach {
@@ -32,23 +32,23 @@ interface IComplexDrawable : Drawable {
 	/**
 	 * Adds a child. The order that this method is called matters (it affects the Z-index).
 	 */
-	fun <T> addChild(child: T): T {
-		this.childs.add(child as Drawable)
+	fun <TChild : T> addChild(child: TChild): TChild {
+		this.childs.add(child)
 		return child
 	}
 
 	/**
 	 * Adds many childs.
 	 */
-	fun <T> addChilds(childs: List<T>): List<T> {
+	fun <TChild : T> addChilds(childs: List<TChild>): List<TChild> {
 		return childs.map { this.addChild(it) }
 	}
 
 	/**
 	 * Removes a child.
 	 */
-	fun removeChild(drawable: Drawable) {
-		this.childs.remove(drawable)
+	fun removeChild(child: T) {
+		this.childs.remove(child)
 	}
 
 	/**

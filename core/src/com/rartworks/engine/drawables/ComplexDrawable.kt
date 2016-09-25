@@ -8,16 +8,16 @@ import com.rartworks.engine.utils.fastMaxBy
 import com.rartworks.engine.utils.fastMinBy
 
 /**
- * Implementation of [IComplexDrawable] with a mutable list of childs.
+ * Implementation of [IComplexDrawable] with a mutable list of childs of type [T].
  */
-open class ComplexDrawable : IComplexDrawable {
+open class ComplexDrawableOf<T : Drawable> : IComplexDrawable<T> {
 	override val position = Vector2()
 	override val color = Color().set(Color.WHITE)
 	override var scale = 1f
 	override var rotation = 0f
 	override val origin = Vector2(0.5f, 0.5f)
 
-	override val childs: MutableList<Drawable> = arrayListOf()
+	override val childs: MutableList<T> = arrayListOf()
 
 	override val width: Float get() {
 		if (this.childs.isEmpty()) return 0f
@@ -35,3 +35,8 @@ open class ComplexDrawable : IComplexDrawable {
 		return (max.position.y + max.height) - (min.position.y)
 	}
 }
+
+/**
+ * A normal [Drawable], but it can have other [Drawable]s as [childs].
+ */
+open class ComplexDrawable : ComplexDrawableOf<Drawable>() { }
