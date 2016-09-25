@@ -39,4 +39,9 @@ class QuadTween(private val drawable: Drawable) {
 	fun clear() {
 		this.tweenManager.killAll()
 	}
+
+	/**
+	 * Returns if there are pending animations.
+	 */
+	val isActive: Boolean get() = this.tweenManager.runningTweensCount > 0
 }
