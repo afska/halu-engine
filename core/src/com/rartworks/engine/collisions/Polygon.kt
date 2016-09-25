@@ -89,8 +89,8 @@ class Polygon() : CollisionShape {
 	 */
 	private fun loadBody() {
 		this.body = AssetsFactory.polygons.createPolygonBody(
-			this.box2dWorld, this.movieClip.scaledWidth,
-			this.movieClip.info.collisionInfo!!, this.currentFrameName
+			this.box2dWorld, this.movieClip,
+			this.movieClip.scaledWidth, this.currentFrameName
 		)
 	}
 }

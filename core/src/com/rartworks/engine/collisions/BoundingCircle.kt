@@ -26,7 +26,7 @@ class BoundingCircle(private val handicap: Float = 0f) : CollisionShape {
 
 		val width = this.movieClip.scaledWidth * (1 - this.handicap)
 		this.body = AssetsFactory.polygons.createCircleBody(
-			this.box2dWorld, width, this.movieClip.info.collisionInfo!!
+			this.box2dWorld, this.movieClip, width
 		)
 	}
 

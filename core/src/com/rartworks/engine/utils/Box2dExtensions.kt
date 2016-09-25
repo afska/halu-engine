@@ -6,27 +6,30 @@ import com.badlogic.gdx.physics.box2d.BodyDef
 import com.badlogic.gdx.physics.box2d.CircleShape
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.rartworks.engine.collisions.CollisionInfo
+import com.rartworks.engine.drawables.MovieClip
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**
- * Creates a Box2d body in a [world] with a human [name], a [width], and [collisionInfo].
- * The fixture is a polygon.
+ * Creates a Box2d body of a [movieClip] in a [world] with a [width].
+ * The fixture is a polygon based on the [name].
  */
-fun BodyEditorLoader.createPolygonBody(world: Box2dWorld, width: Float, collisionInfo: CollisionInfo, name: String): Body {
-	return createBox2dBody(world, collisionInfo) { body, fixture ->
+fun BodyEditorLoader.createPolygonBody(world: Box2dWorld, movieClip: MovieClip, width: Float, name: String): Body {
+	return createBox2dBody(world, movieClip.info.collisionInfo!!) { body, fixture ->
 		this.attachFixture(body, name, fixture, width)
+		body.userData = movieClip
 	}
 }
 
 /**
- * Creates a Box2d body in a [world] with a human [name], a [width], and [collisionInfo].
+ * Creates a Box2d body of a [movieClip] in a [world] with a [width].
  * The fixture is a circle.
  */
-fun BodyEditorLoader.createCircleBody(world: Box2dWorld, width: Float, collisionInfo: CollisionInfo): Body {
-	return createBox2dBody(world, collisionInfo) { body, fixture ->
+fun BodyEditorLoader.createCircleBody(world: Box2dWorld, movieClip: MovieClip, width: Float): Body {
+	return createBox2dBody(world, movieClip.info.collisionInfo!!) { body, fixture ->
 		fixture.shape = CircleShape()
 		fixture.shape.radius = width / 2
 		body.createFixture(fixture)
+		body.userData = movieClip
 	}
 }
 

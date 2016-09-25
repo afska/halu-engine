@@ -7,9 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
+import com.rartworks.engine.collisions.Collidable
 import com.rartworks.engine.collisions.CollisionInfo
-import com.rartworks.engine.collisions.Polygon
-import com.rartworks.engine.rendering.Drawable
 import com.rartworks.engine.utils.doIfExists
 
 private val FRAME_DURATION = 0.03f
@@ -17,7 +16,7 @@ private val FRAME_DURATION = 0.03f
 /**
  * An animated movie clip that loops by default.
  */
-open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.frames), Drawable {
+open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.frames), Collidable {
 	override val position = Vector2()
 	override val color = Color().set(Color.WHITE)
 	override var scale = 1f
@@ -52,6 +51,10 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 
 	override fun draw(spriteBatch: SpriteBatch) {
 		spriteBatch.draw(this.currentFrame, 0f, 0f)
+	}
+
+	override fun onCollide(another: Collidable, points: kotlin.Array<Vector2>) {
+
 	}
 
 	/**

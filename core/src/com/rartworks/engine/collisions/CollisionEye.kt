@@ -11,8 +11,9 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
 /**
  * A collision checker... [onCollide], executes the action.
+ * Also, it calls the [onCollide] method of the [Collidable]s.
  */
-class CollisionEye(private val onCollide: (Any, Any, Array<Vector2>) -> (Unit)) : ContactListener {
+class CollisionEye(private val onCollide: (Collidable, Collidable, Array<Vector2>) -> (Unit)) : ContactListener {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
 	/**
@@ -36,10 +37,14 @@ class CollisionEye(private val onCollide: (Any, Any, Array<Vector2>) -> (Unit)) 
 	override fun beginContact(contact: Contact) {
 		val bodyA = contact.fixtureA.body
 		val bodyB = contact.fixtureB.body
+		val points = contact.worldManifold.points
 
-		val dataA = bodyA.userData
-		val dataB = bodyB.userData
-		this.onCollide(dataA, dataB, contact.worldManifold.points)
+		val collidableA = bodyA.userData as Collidable
+		val collidableB = bodyB.userData as Collidable
+		collidableA.onCollide(collidableB, points)
+		collidableB.onCollide(collidableA, points)
+
+		this.onCollide(collidableA, collidableB, points)
 	}
 
 	/**
