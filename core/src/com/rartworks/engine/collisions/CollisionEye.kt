@@ -25,6 +25,14 @@ class CollisionEye(private val onCollide: (Collidable, Collidable, Array<Vector2
 	}
 
 	/**
+	 * Unregisters the contact listener.
+	 */
+	fun unregister(): CollisionEye {
+		this.box2dWorld.setContactListener(null)
+		return this
+	}
+
+	/**
 	 * Checks for collisions.
 	 */
 	fun checkCollisions() {
