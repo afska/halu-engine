@@ -11,9 +11,9 @@ import com.rartworks.engine.rendering.Dimensions
 open class InputHandler(private val dimensions: Dimensions) : InputProcessor {
 	private val EMPTY_HANDLER: (Int, Int, Int) -> (Boolean) = { _1, _2, _3 -> false }
 
-	private var onTouchDownAction = EMPTY_HANDLER
-	private var onTouchDraggedAction = EMPTY_HANDLER
-	private var onTouchUpAction = EMPTY_HANDLER
+	var onTouchDownAction = EMPTY_HANDLER ; private set
+	var onTouchDraggedAction = EMPTY_HANDLER ; private set
+	var onTouchUpAction = EMPTY_HANDLER ; private set
 
 	/**
 	 * Registers this as the current input processor.
