@@ -31,7 +31,6 @@ class Polygon() : CollisionShape {
 			this.movieClip.info.regionName
 		else
 			this.framesNames[this.movieClip.currentFrameIndex]
-
 	}
 
 	/**

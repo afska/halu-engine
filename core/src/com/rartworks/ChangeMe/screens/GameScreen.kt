@@ -6,6 +6,7 @@ import com.rartworks.ChangeMe.GameContext
 import com.rartworks.ChangeMe.screens.input.GameController
 import com.rartworks.engine.AssetsFactory
 import com.rartworks.engine.collisions.CollisionInfo
+import com.rartworks.engine.collisions.Polygon
 import com.rartworks.engine.drawables.ComplexDrawable
 import com.rartworks.engine.drawables.Label
 import com.rartworks.engine.drawables.MovieClip
@@ -13,7 +14,7 @@ import com.rartworks.engine.events.InputHandler
 import com.rartworks.engine.rendering.Dimensions
 import com.rartworks.engine.rendering.Renderer
 import com.rartworks.engine.rendering.Screen
-import com.rartworks.engine.tween.QuadTween
+import com.rartworks.engine.tween.DrawableQuadTween
 
 /**
  * The main screen of the game.
@@ -25,7 +26,7 @@ class GameScreen(private val game: GameContext) : ComplexDrawable(), Screen {
 	lateinit var hello: Label
 
 	private lateinit var gameController: InputHandler
-	private val alphaTween = QuadTween(this)
+	private val alphaTween = DrawableQuadTween(this)
 	private val renderer = Renderer(this.dimensions)
 	private val renderMethod: (SpriteBatch) -> (Unit) = { spriteBatch ->
 		this.render(spriteBatch)
@@ -41,7 +42,7 @@ class GameScreen(private val game: GameContext) : ComplexDrawable(), Screen {
 		this.addChild(hello)
 
 		// Add animated sprite
-		this.addChild(MovieClip(AssetsFactory.createMovieClipInfo("iddle", CollisionInfo(1, 2))))
+		this.addChild(MovieClip(AssetsFactory.createMovieClipInfo("iddle", CollisionInfo(Polygon(), 1, 2))))
 	}
 
 	override fun render(delta: Float) {

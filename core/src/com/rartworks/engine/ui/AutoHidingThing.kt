@@ -7,7 +7,7 @@ import com.rartworks.engine.utils.increaseUntil
 /**
  * A [Drawable] that hides itself in a fade out when [isVisible] returns false.
  */
-interface AutoHidingWidget : Drawable {
+interface AutoHidingThing : Drawable {
 	val isVisible: () -> (Boolean)
 
 	override fun update(delta: Float) {
