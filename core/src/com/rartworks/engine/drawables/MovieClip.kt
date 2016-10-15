@@ -66,6 +66,11 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 	}
 
 	/**
+	 * Returns if there's an active loop with [loopInfo]
+	 */
+	fun isLoopingWith(loopInfo: LoopInfo) = this.loop == loopInfo
+
+	/**
 	 * Goes to the frame in [index].
 	 */
 	fun goTo(index: Int) { this.runTime = index * FRAME_DURATION }
