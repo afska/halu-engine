@@ -58,7 +58,7 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 		this.integrations.forEach { it.onCreating(layout) }
 
 		// Hook it all up
-		setContentView(layout)
+		this.setContentView(layout)
 
 		// Initialize services
 		this.integrations.forEach { it.onCreated() }
