@@ -80,7 +80,6 @@ project(":android") {
 project(":core") {
 	apply plugin: "kotlin"
 
-
 	dependencies {
 		compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 		compile "com.badlogicgames.gdx:gdx:$gdxVersion"
