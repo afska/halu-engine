@@ -3,7 +3,7 @@ package com.rartworks.engine.tween
 /**
  * The place for the parameters that can be interpolated.
  */
-enum class TweenParameter(val id: Int) {
+enum class DrawableTweenParameter(val id: Int) {
 	X(1),
 	Y(2),
 	RED(3),

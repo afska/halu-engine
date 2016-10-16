@@ -99,11 +99,11 @@ interface Drawable {
 	}
 
 	/**
-	 * Returns if a point formed by [x] and [y] is inside the drawable's rectangle or not.
+	 * Returns if a point formed by [x] and [y] is inside the [Drawable]'s rectangle or not.
 	 */
-	fun isIn(x: Int, y: Int) =
-		x >= this.position.x && x <= this.position.x + this.width &&
-			y >= this.position.y && y <= this.position.y + this.height
+	fun isIn(x: Int, y: Int, tolerance: Int = 0) =
+		 this.position.x - tolerance <= x && x <= this.position.x + this.scaledWidth + tolerance &&
+			this.position.y - tolerance <= y && y <= this.position.y + this.scaledHeight + tolerance
 
 	private fun transformMatrix(matrix: Matrix4) =
 		matrix

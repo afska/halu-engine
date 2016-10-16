@@ -1,5 +1,7 @@
 package com.rartworks.engine.events
 
+import com.rartworks.engine.utils.fastForEach
+
 /**
  * An event that can be fired.
  */
@@ -17,6 +19,6 @@ class Event {
 	 * Fires the event.
 	 */
 	fun fire() {
-		this.handlers.forEach { it() }
+		this.handlers.fastForEach { it() }
 	}
 }

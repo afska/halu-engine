@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen as GdxScreen
 /**
  * A wrapper of the *LibGDX*'s [Screen] that don't forces to override all methods.
  */
-interface Screen : com.badlogic.gdx.Screen {
+interface Screen : GdxScreen {
 	override fun show() { }
 
 	override fun pause() { }

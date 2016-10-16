@@ -7,13 +7,16 @@ import com.rartworks.engine.utils.increaseUntil
 /**
  * A [Drawable] that hides itself in a fade out when [isVisible] returns false.
  */
-interface AutoHidingWidget : Drawable {
+interface AutoHidingThing : Drawable {
 	val isVisible: () -> (Boolean)
 
 	override fun update(delta: Float) {
 		this.autoHide(1f, delta)
 	}
 
+	/**
+	 * Depending on [isVisible], it slightly increases or decreases the [alpha].
+	 */
 	fun autoHide(maxAlpha: Float, delta: Float) {
 		val speed = 1f * delta / (1 / maxAlpha)
 
