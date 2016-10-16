@@ -7,16 +7,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
+import com.rartworks.engine.collisions.Collidable
 import com.rartworks.engine.collisions.CollisionInfo
-import com.rartworks.engine.collisions.Polygon
-import com.rartworks.engine.rendering.Drawable
+import com.rartworks.engine.utils.doIfExists
 
 private val FRAME_DURATION = 0.03f
 
 /**
  * An animated movie clip that loops by default.
  */
-open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.frames), Drawable {
+open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.frames), Collidable {
 	override val position = Vector2()
 	override val color = Color().set(Color.WHITE)
 	override var scale = 1f
@@ -28,13 +28,12 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 	val currentFrame: TextureRegion get() = this.getKeyFrame(this.runTime)
 	val currentFrameIndex: Int get() = (this.runTime / FRAME_DURATION).toInt()
 
-	private val polygon: Polygon?
 	private var isPlaying = true
 	private var loop: LoopInfo = LoopInfo(1, info.frames.size)
 	private var runTime = 0f
 
 	init {
-		this.polygon = if (this.info.collisionInfo != null) Polygon(this) else null
+		this.info.collisionInfo.doIfExists { it.shape.initialize(this) }
 	}
 
 	override fun update(delta: Float) {
@@ -47,11 +46,15 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 	}
 
 	override fun updateAbs(delta: Float) {
-		this.polygon?.updateWorld()
+		this.info.collisionInfo.doIfExists { it.shape.updateWorld() }
 	}
 
 	override fun draw(spriteBatch: SpriteBatch) {
 		spriteBatch.draw(this.currentFrame, 0f, 0f)
+	}
+
+	override fun onCollide(another: Collidable, points: kotlin.Array<Vector2>) {
+
 	}
 
 	/**
@@ -61,6 +64,11 @@ open class MovieClip(val info: MovieClipInfo) : Animation(FRAME_DURATION, info.f
 		this.loop = loopInfo
 		this.goTo(loopInfo.from)
 	}
+
+	/**
+	 * Returns if there's an active loop with [loopInfo]
+	 */
+	fun isLoopingWith(loopInfo: LoopInfo) = this.loop == loopInfo
 
 	/**
 	 * Goes to the frame in [index].

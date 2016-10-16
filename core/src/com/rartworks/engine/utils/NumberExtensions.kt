@@ -19,10 +19,24 @@ fun Float.decreaseUntil(delta: Float, limit: Float): Float {
 }
 
 /**
+ * Returns if the number is equal to [another] applying a [delta] for the comparison.
+ */
+fun Float.isEqualWithDelta(another: Float, delta: Float): Boolean {
+	return Math.abs(this - another) < delta
+}
+
+/**
  * Generates a random number between this and [max].
  */
 fun Float.toRandom(max: Float): Float {
 	return this + MathUtils.random() * (max - this)
+}
+
+/**
+ * Generates a random number between this and [max].
+ */
+fun Int.toRandom(max: Int): Int {
+	return this.toFloat().toRandom(max.toFloat()).toInt()
 }
 
 /**

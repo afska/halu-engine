@@ -122,5 +122,4 @@ object AssetsFactory {
 
 		return parameter
 	}
-
 }

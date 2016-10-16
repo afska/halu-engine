@@ -1,5 +1,7 @@
 package com.rartworks.engine.events
 
+import com.rartworks.engine.utils.fastForEach
+
 /**
  * An event that can be fired with parameters.
  */
@@ -17,6 +19,6 @@ open class EventWithInfo<TInfo> {
 	 * Fires the event.
 	 */
 	fun fire(info: TInfo) {
-		this.handlers.forEach { it(info) }
+		this.handlers.fastForEach { it(info) }
 	}
 }

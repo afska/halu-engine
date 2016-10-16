@@ -6,10 +6,10 @@ import com.rartworks.engine.drawables.MovieClip
 /**
  * A button that can be pressed.
  */
-abstract class Button(regionName: String, override val isVisible: () -> (Boolean)) : MovieClip(AssetsFactory.createMovieClipInfo(regionName)), AutoHidingWidget {
+abstract class Button(regionName: String, override val isVisible: () -> (Boolean)) : MovieClip(AssetsFactory.createMovieClipInfo(regionName)), AutoHidingThing {
 	override fun update(delta: Float) {
 		super<MovieClip>.update(delta)
-		super<AutoHidingWidget>.update(delta)
+		super<AutoHidingThing>.update(delta)
 	}
 
 	/**

@@ -5,8 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body
 import com.rartworks.engine.AssetsFactory
 import com.rartworks.engine.drawables.MovieClip
 import com.rartworks.engine.utils.addTrailingZeros
-import com.rartworks.engine.utils.createBody
-import com.rartworks.engine.utils.doIfExists
+import com.rartworks.engine.utils.createPolygonBody
 import java.util.*
 import com.badlogic.gdx.physics.box2d.World as Box2dWorld
 
@@ -14,29 +13,37 @@ import com.badlogic.gdx.physics.box2d.World as Box2dWorld
  * A polygon used by the engine for collision detection.
  * It tracks the movieClip parameters, and replicates its variables in the *Box2d* world.
  */
-class Polygon(private val movieClip: MovieClip) {
+class Polygon() : CollisionShape {
 	private val box2dWorld = AssetsFactory.box2dWorld
 
-	private var currentBody: Body? = null
+	override lateinit var body: Body
+
+	private lateinit var movieClip: MovieClip
 	private var currentProperties: HashMap<String, Number> = hashMapOf(
 		Pair("frameIndex", 0), Pair("scale", 1f)
 	)
 	private var outOfSync = false
 
-	private val framesCount: Int
+	private var framesCount: Int = 0
+	private lateinit var framesNames: List<String>
 	private val currentFrameName: String get() {
-		val info = this.movieClip.info
-
 		return if (this.framesCount == 1)
-			info.regionName
-		else {
-			val index = (this.movieClip.currentFrameIndex + 1).addTrailingZeros(4)
-			"${info.regionName}_$index"
-		}
+			this.movieClip.info.regionName
+		else
+			this.framesNames[this.movieClip.currentFrameIndex]
 	}
 
-	init {
+	/**
+	 * Saves the [movieClip] and loads the first [Body].
+	 */
+	override fun initialize(movieClip: MovieClip) {
+		this.movieClip = movieClip
+
 		this.framesCount = this.movieClip.info.frames.count()
+		this.framesNames = (0 .. this.framesCount - 1).map {
+			val index = (it + 1).addTrailingZeros(4)
+			"${this.movieClip.info.regionName}_$index"
+		}
 		this.loadBody()
 	}
 
@@ -44,18 +51,18 @@ class Polygon(private val movieClip: MovieClip) {
 	 * Keeps track of the current frame and scale of the movie clip.
 	 * If it has changed, recreates the adapted polygon.
 	 */
-	fun updateWorld() {
+	override fun updateWorld() {
 		this.syncWithMovieClip("frameIndex", this.movieClip.currentFrameIndex)
 		this.syncWithMovieClip("scale", this.movieClip.scale)
 		if (this.outOfSync) {
-			this.loadBody()
+			this.reloadBody()
 			this.outOfSync = false
 		}
 
 		val rotationInRadians = this.movieClip.rotation * MathUtils.degreesToRadians
 		val cornerPosition = this.movieClip.toCornerPosition()
 
-		this.currentBody?.setTransform(cornerPosition, rotationInRadians)
+		this.body.setTransform(cornerPosition, rotationInRadians)
 	}
 
 	/**
@@ -71,14 +78,18 @@ class Polygon(private val movieClip: MovieClip) {
 	/**
 	 * Reloads the *Box2d* body.
 	 */
-	private fun loadBody() {
-		this.currentBody.doIfExists {
-			this.box2dWorld.destroyBody(this.currentBody)
-		}
+	private fun reloadBody() {
+		this.box2dWorld.destroyBody(this.body)
+		this.loadBody()
+	}
 
-		this.currentBody = AssetsFactory.polygons.createBody(
-			this.box2dWorld, this.currentFrameName,
-			this.movieClip.scaledWidth, this.movieClip.info.collisionInfo
+	/**
+	 * Loads the *Box2d* body.
+	 */
+	private fun loadBody() {
+		this.body = AssetsFactory.polygons.createPolygonBody(
+			this.box2dWorld, this.movieClip,
+			this.movieClip.scaledWidth, this.currentFrameName
 		)
 	}
 }
