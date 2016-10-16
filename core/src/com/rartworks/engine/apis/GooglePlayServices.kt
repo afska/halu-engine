@@ -4,6 +4,6 @@ interface GooglePlayServices {
 	fun signIn()
 	fun signOut()
 	fun rateGame()
-	fun unlockAchievementByScore(meters: Int)
+	fun unlockAchievementByScore(score: Int)
 	fun isSignedIn(): Boolean
 }

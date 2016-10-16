@@ -6,7 +6,7 @@ import com.rartworks.engine.utils.getRandomElement
 import com.rartworks.engine.utils.isEqualWithDelta
 
 /**
- * Changes randomly the color of the [container].
+ * Changes randomly the color of the container.
  * Also it can do a transition to a fixed color.
  */
 class ColorMutator(container: Drawable, private val availableColors: List<Color>) {

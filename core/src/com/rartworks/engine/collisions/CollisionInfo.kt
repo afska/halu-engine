@@ -16,21 +16,21 @@ class CollisionInfo(val shape: CollisionShape, private val id: Int, vararg priva
 	}
 
 	/**
-	 * Sets the [maskBits] to the [Body].
+	 * Sets the [maskBits] to the body.
 	 */
 	fun enable() {
 		this.setMaskBits(this.maskBits)
 	}
 
 	/**
-	 * Clear the [Body]'s maskBits to disable collisions.
+	 * Clear the body's maskBits to disable collisions.
 	 */
 	fun disable() {
 		this.setMaskBits(0)
 	}
 
 	/**
-	 * Sets the [maskBits] to the [Body].
+	 * Sets the [maskBits] to the body.
 	 */
 	private fun setMaskBits(maskBits: Short) {
 		this.shape.body.fixtureList.forEach {

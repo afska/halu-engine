@@ -9,9 +9,9 @@ fun TempVector2(x: Float = 0f, y: Float = 0f) = tmpVector2.set(x, y)
 fun TempMatrix4() = tmpMatrix4.setToTranslation(0f, 0f, 0f)
 
 /**
- * Adds to the vector [width] and scale it by [delta].
+ * Adds to the vector [another] and scale it by [delta].
  */
-fun Vector2.addScl(with: Vector2, delta: Float) {
-	val value = TempVector2().set(with).scl(delta)
+fun Vector2.addScl(another: Vector2, delta: Float) {
+	val value = TempVector2().set(another).scl(delta)
 	this.add(value)
 }

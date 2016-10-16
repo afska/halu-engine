@@ -35,7 +35,7 @@ inline fun ShapeRenderer.changeColorAndThen(color: Color, action: () -> (Unit)) 
 }
 
 /**
- * Changes the [alpha], [transform]s the matrix, and then runs an action to [draw].
+ * Changes the color, [transform]s the matrix, and then runs an action to [draw].
  */
 inline fun render(getColor: () -> (Color), setColor: (Color) -> (Unit), getMatrix: () -> (Matrix4), setMatrix: (Matrix4) -> (Unit), color: Color, transform: (Matrix4) -> (Matrix4), draw: () -> (Unit)) {
 	changeColorAndThen(getColor, setColor, color) {
