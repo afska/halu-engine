@@ -2,7 +2,7 @@ package com.rartworks.ChangeMe
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.physics.box2d.Box2D
-import com.rartworks.ChangeMe.apis.MobileServices
+import com.rartworks.engine.apis.MobileServices
 import com.rartworks.ChangeMe.screens.SplashScreen
 import com.rartworks.engine.rendering.Dimensions
 
