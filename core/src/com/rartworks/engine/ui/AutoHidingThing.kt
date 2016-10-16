@@ -9,16 +9,18 @@ import com.rartworks.engine.utils.increaseUntil
  */
 interface AutoHidingThing : Drawable {
 	val isVisible: () -> (Boolean)
+	fun _maxAlpha() = 1f
+	fun _hidingSpeed() = 1f
 
 	override fun update(delta: Float) {
-		this.autoHide(1f, delta)
+		this.autoHide(this._maxAlpha(), delta)
 	}
 
 	/**
 	 * Depending on [isVisible], it slightly increases or decreases the [alpha].
 	 */
 	fun autoHide(maxAlpha: Float, delta: Float) {
-		val speed = 1f * delta / (1 / maxAlpha)
+		val speed = this._hidingSpeed() * delta / (1 / maxAlpha)
 
 		this.alpha =
 			if (this.isVisible())
