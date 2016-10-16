@@ -13,5 +13,5 @@ abstract class Integration(protected val app : Activity) {
 	open fun onStart() { }
 	open fun onStop() { }
 	open fun onDestroy() { }
-	open fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) { }
+	open fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) { }
 }

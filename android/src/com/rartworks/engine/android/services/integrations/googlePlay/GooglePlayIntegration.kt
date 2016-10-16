@@ -96,7 +96,7 @@ class GooglePlayIntegration(app: Activity, val settings: GooglePlaySettings) : I
 		this.gameHelper.onStop()
 	}
 
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		this.gameHelper.onActivityResult(requestCode, resultCode, data)
 		if (resultCode == GamesActivityResultCodes.RESULT_RECONNECT_REQUIRED)
 			this.gameHelper.disconnect()

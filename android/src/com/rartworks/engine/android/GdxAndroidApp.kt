@@ -92,7 +92,7 @@ abstract class GdxAndroidApp() : AndroidApplication() {
 		this.integrations.forEach { it.onDestroy() }
 	}
 
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		super.onActivityResult(requestCode, resultCode, data)
 		this.integrations.forEach { it.onActivityResult(requestCode, resultCode, data) }
 	}

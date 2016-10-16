@@ -114,7 +114,7 @@ class InAppBillingIntegration(app: Activity, private val billingKey: String, pri
 		this.iabHelper = null
 	}
 
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		if (this.iabHelper != null)
 			this.iabHelper!!.handleActivityResult(requestCode, resultCode, data)
 	}
