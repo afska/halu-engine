@@ -6,6 +6,11 @@
 
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />
 
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="com.android.vending.BILLING" />
+
 	<application
 		android:name ="ChangeMeAndroidApp"
 		android:allowBackup="true"
@@ -31,9 +36,4 @@
 				  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
 				  android:theme="@android:style/Theme.Translucent" />
 	</application>
-
-	<uses-permission android:name="android.permission.VIBRATE"/>
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="com.android.vending.BILLING" />
 </manifest>
