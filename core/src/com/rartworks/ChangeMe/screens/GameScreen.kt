@@ -23,9 +23,9 @@ class GameScreen(private val game: GameContext) : ComplexDrawable(), Screen {
 	private val TWEEN_TIME = 0.5f
 
 	val dimensions: Dimensions = this.game.dimensions
-	lateinit var hello: Label
+	val hello: Label
 
-	private lateinit var gameController: InputHandler
+	private val gameController: InputHandler
 	private val alphaTween = DrawableQuadTween(this)
 	private val renderer = Renderer(this.dimensions)
 	private val renderMethod: (SpriteBatch) -> (Unit) = { spriteBatch ->
