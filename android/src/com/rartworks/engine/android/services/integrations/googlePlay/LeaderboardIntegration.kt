@@ -2,8 +2,10 @@ package com.rartworks.engine.android.services.integrations.googlePlay
 
 import android.app.Activity
 import com.google.android.gms.games.Games
+import com.google.android.gms.games.leaderboard.LeaderboardVariant
 import com.rartworks.engine.android.services.integrations.Integration
 import com.rartworks.engine.apis.LeaderboardServices
+import com.rartworks.engine.apis.PlayerScore
 import java.util.*
 
 /**
@@ -12,6 +14,29 @@ import java.util.*
 class LeaderboardIntegration(app: Activity, private val googlePlayIntegration: GooglePlayIntegration, private val leaderboardIds: List<String>) : Integration(app), LeaderboardServices {
 	companion object {
 		private const val RC_SHOW_LEADERBOARD = 1
+	}
+
+	/**
+	 * Retrieves the scores of the leaderboard.
+	 */
+	override fun getScores(leaderboardId: String?, limit: Int, callback: (List<PlayerScore>) -> (Unit)) {
+		val id = this.getLeaderboardId(leaderboardId)
+
+		Games.Leaderboards.loadPlayerCenteredScores(
+			this.googlePlayIntegration.gameHelper.apiClient,
+			id,
+			LeaderboardVariant.TIME_SPAN_ALL_TIME,
+			LeaderboardVariant.COLLECTION_PUBLIC,
+			limit
+		).setResultCallback { loadScoresResult ->
+			val scores: MutableList<PlayerScore> = mutableListOf()
+			val it = loadScoresResult.scores.iterator()
+			while (it.hasNext()) {
+				val score = it.next()
+				scores.add(GooglePlayerScore(score.scoreHolderDisplayName, score.displayScore.toInt()))
+			}
+			callback(scores)
+		}
 	}
 
 	/**

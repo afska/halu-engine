@@ -16,6 +16,7 @@ The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks
 - Tap detection, onDrag support.
 - Buttons and auto-hiding widgets.
 - Labels with TrueType font loading.
+- An automatic color blender for cool effects.
 - Async loading, with loaded percentage.
 - A bunch of utils (like temp vectors).
 
