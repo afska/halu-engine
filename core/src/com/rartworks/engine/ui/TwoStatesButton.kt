@@ -3,28 +3,30 @@ package com.rartworks.engine.ui
 /**
  * A button that can be [pressed] or not.
  */
-abstract class TwoStatesButton(regionName: String, override val isVisible: () -> (Boolean), private var pressed: Boolean = true) : Button(regionName, isVisible) {
-	private val frameIndex: Int get() = if (this.pressed) 1 else 0
+abstract class TwoStatesButton(regionName: String, override val isVisible: () -> (Boolean), private val isPressed: () -> (Boolean)) : Button(regionName, isVisible) {
+	private val frameIndex: Int get() = if (this.isPressed()) 1 else 0
 
 	init {
 		this.pause()
-		this.updateFrame()
+	}
+
+	override fun update(delta: Float) {
+		super.update(delta)
+
+		if (this.isVisible()) this.updateFrame()
 	}
 
 	/**
 	 * Changes the state of the button.
 	 */
 	override fun click() {
-		this.pressed = !this.pressed
+		val isNowPressed = !this.isPressed()
 
-		if (this.pressed)
+		if (isNowPressed)
 			this.onPressed()
 		else
 			this.onUnpressed()
-
-		this.updateFrame()
 	}
-
 
 	abstract fun onUnpressed()
 
