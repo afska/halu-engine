@@ -15,11 +15,11 @@ class ColorMutator(container: Drawable, private val availableColors: List<Color>
 
 	private val color = container.color
 	private val isTheRightColor: Boolean get() =
-	isTheRightComponent({ it.r }) && isTheRightComponent({ it.g }) &&
+		isTheRightComponent({ it.r }) && isTheRightComponent({ it.g }) &&
 		isTheRightComponent({ it.b }) && isTheRightComponent({ it.a })
 
 	private lateinit var nextColor: Color
-	private var shouldContinue = true
+	private var randomColorsMode = true
 
 
 	init {
@@ -32,7 +32,7 @@ class ColorMutator(container: Drawable, private val availableColors: List<Color>
 	fun mutate(delta: Float) {
 		this.color.lerp(this.nextColor, INTERPOLATION_COEFFICIENT * delta)
 
-		if (this.isTheRightColor && this.shouldContinue)
+		if (this.isTheRightColor && this.randomColorsMode)
 			this.selectNextColor()
 	}
 
@@ -41,7 +41,6 @@ class ColorMutator(container: Drawable, private val availableColors: List<Color>
 	 */
 	fun reset() {
 		this.color.set(Color.WHITE)
-		this.shouldContinue = true
 	}
 
 	/**
@@ -49,14 +48,16 @@ class ColorMutator(container: Drawable, private val availableColors: List<Color>
 	 */
 	fun setFixedColor(color: Color) {
 		this.nextColor = color
-		this.shouldContinue = false
+		this.randomColorsMode = false
 	}
 
 	/**
 	 * Keep displaying random colors.
 	 */
 	fun unsetFixedColor()  {
-		this.shouldContinue = true
+		this.nextColor = Color.WHITE
+		this.randomColorsMode = true
+		this.reset()
 	}
 
 	/**
