@@ -10,6 +10,7 @@ import com.rartworks.engine.android.services.integrations.adMob.AdMobIntegration
 import com.rartworks.engine.android.services.integrations.adMob.AdMobSettings
 import com.rartworks.engine.android.services.integrations.googlePlay.GooglePlayIntegration
 import com.rartworks.engine.android.services.integrations.googlePlay.GooglePlaySettings
+import com.rartworks.engine.android.services.integrations.googlePlay.LeaderboardId
 import com.rartworks.engine.android.services.integrations.googlePlay.LeaderboardIntegration
 import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
 import java.util.*
@@ -71,7 +72,7 @@ class AndroidMobileServices(app: Activity) : MobileServices {
 	override val leaderboard = LeaderboardIntegration(app,
 		this.googlePlay,
 		listOf(
-			app.getString(R.string.leaderboard_high_scores)
+			LeaderboardId("high_scores", app.getString(R.string.leaderboard_high_scores))
 		)
 	)
 }
