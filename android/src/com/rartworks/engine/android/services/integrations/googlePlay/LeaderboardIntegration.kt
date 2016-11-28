@@ -11,7 +11,7 @@ import java.util.*
 /**
  * Manages the integration with Google Play Leaderboards.
  */
-class LeaderboardIntegration(app: Activity, private val googlePlayIntegration: GooglePlayIntegration, private val leaderboardIds: List<String>) : Integration(app), LeaderboardServices {
+class LeaderboardIntegration(app: Activity, private val googlePlayIntegration: GooglePlayIntegration, private val leaderboardIds: List<LeaderboardId>) : Integration(app), LeaderboardServices {
 	companion object {
 		private const val RC_SHOW_LEADERBOARD = 1
 	}
@@ -77,9 +77,9 @@ class LeaderboardIntegration(app: Activity, private val googlePlayIntegration: G
 	private fun getLeaderboardId(leaderboardId: String?): String {
 		return this.getOrThrow {
 			if (leaderboardId != null)
-				this.leaderboardIds.first { it == leaderboardId }
+				this.leaderboardIds.first { it.name == leaderboardId }.id
 			else
-				this.leaderboardIds.single()
+				this.leaderboardIds.single().id
 		}
 	}
 
