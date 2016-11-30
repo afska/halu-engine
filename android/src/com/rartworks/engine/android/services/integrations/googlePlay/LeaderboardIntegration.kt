@@ -17,9 +17,11 @@ class LeaderboardIntegration(app: Activity, private val googlePlayIntegration: G
 	}
 
 	override fun getScore(leaderboardId: String?, callback: (Int) -> (Unit)) {
+		val id = this.getLeaderboardId(leaderboardId)
+
 		Games.Leaderboards.loadCurrentPlayerLeaderboardScore(
 			this.googlePlayIntegration.gameHelper.apiClient,
-			leaderboardId,
+			id,
 			LeaderboardVariant.TIME_SPAN_ALL_TIME,
 			LeaderboardVariant.COLLECTION_PUBLIC
 		).setResultCallback { loadScoreResult ->
