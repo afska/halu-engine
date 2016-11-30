@@ -23,7 +23,7 @@ class LeaderboardIntegration(app: Activity, private val googlePlayIntegration: G
 			LeaderboardVariant.TIME_SPAN_ALL_TIME,
 			LeaderboardVariant.COLLECTION_PUBLIC
 		).setResultCallback { loadScoreResult ->
-			callback(loadScoreResult.score.rawScore.toInt())
+			callback(loadScoreResult.score?.rawScore?.toInt() ?: 0)
 		}
 	}
 	/**
