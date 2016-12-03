@@ -25,7 +25,7 @@ abstract class TapAction() {
 	/**
 	 * Stop event handler. Fires the [onStop] only if the [pointer] is the same as the current.
 	 */
-	fun stopIfAppropriate(x: Int, y: Int, pointer: Int) {
+	fun stopIfAppropriate(pointer: Int) {
 		if (this.isMyPointer(pointer)) {
 			this.isActive = false
 

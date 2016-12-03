@@ -1,10 +1,9 @@
-package com.rartworks.engine.android.services
+package com.rartworks.engine.android.services.integrations.inAppBilling
 
 import android.app.Activity
 import android.content.Intent
 import com.badlogic.gdx.Gdx
 import com.rartworks.engine.android.services.integrations.Integration
-import com.rartworks.engine.android.services.integrations.inAppBilling.Purchase
 import com.rartworks.engine.android.services.util.IabHelper
 import com.rartworks.engine.android.utils.isDebuggable
 import com.rartworks.engine.android.utils.showError
