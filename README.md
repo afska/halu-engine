@@ -23,11 +23,10 @@ The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks
 # instructions
 
 - Replace `ChangeMe` with the `NameOfTheGame`.
-- Replace `com.rartworks.NameOfTheGame` with `com.rartworks.nameofthegame`.
+- Replace `com.rartworks.NameOfTheGame` with `com.yourpackage.nameofthegame`.
 - Replace `ChangeThisToken` with a secret token.
 - Enable integrations in the `AndroidMobileServices` class.
 
 # recommended tools
 - [GDX Texture Packer](https://github.com/libgdx/libgdx/wiki/Texture-packer)
 - [Box2D Physics Editor](https://www.codeandweb.com/physicseditor)
-
