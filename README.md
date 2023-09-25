@@ -1,4 +1,4 @@
-# game-seed
+# halu-engine
 
 The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks.halu.android).
 ![screenshot](https://cloud.githubusercontent.com/assets/1631752/16611273/73f1ece0-4360-11e6-9227-6f9cf6392984.png)
