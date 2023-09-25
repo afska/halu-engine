@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- Metadata -->
-	<string name="package_name">com.rartworks.ChangeMe.android</string>
+	<string name="package_name">com.rlabs.ChangeMe.android</string>
 	<string name="playstore_link">ChangeThisToken</string>
 
 	<!-- Services -->
