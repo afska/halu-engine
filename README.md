@@ -1,7 +1,11 @@
 # halu-engine
 
 The engine of [Halu](https://play.google.com/store/apps/details?id=com.rartworks.halu.android).
+
+
 ![screenshot](https://cloud.githubusercontent.com/assets/1631752/16611273/73f1ece0-4360-11e6-9227-6f9cf6392984.png)
+
+> <img alt="rlabs" width="16" height="16" src="https://user-images.githubusercontent.com/1631752/116227197-400d2380-a72a-11eb-9e7b-389aae76f13e.png" /> Created by [[r]labs](https://r-labs.io).
 
 # features
 
